@@ -1,10 +1,12 @@
 ﻿using RogueEngine;
+using RogueEngine.Position;
 
-internal class Program
-{
-    private static void Main(string[] args)
-    {
-        Engine.Foo();
-    }
 
-}
+
+
+
+Position pos = new Position(2, 3);
+Position pos2 = new Position(0, 4);
+
+pos -= pos2;
+Console.WriteLine(pos);
