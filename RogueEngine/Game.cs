@@ -1,6 +1,6 @@
 ﻿namespace RogueEngine
 {
-    public class Engine
+    public class Game
     {
         public static void Foo()
         {
