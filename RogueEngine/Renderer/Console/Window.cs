@@ -1,7 +1,10 @@
-﻿namespace RogueEngine.Renderer
+﻿using RogueEngine.Position;
+
+namespace RogueEngine.Renderer.Console
 {
     public abstract class Window
     {
+        //const char[] _border = new char[] { };
         public int Width { get; set; }
         public int Height { get; set; }
         public int LayerOrder { get; set; }
@@ -23,6 +26,15 @@
             TopLeftAnchor = other.TopLeftAnchor;
         }
 
+        public virtual void RenderWindow()
+        {
+            // Print a blank window with edges 
+            /* Right Border: 221  ▌
+             * Left Border:222 ▐
+             * Top Border: 223 ▀
+             * Bot Border: 220 ▄
+             */
+        }
         public override string ToString()
         {
             return $"Window [width={Width}, height={Height}, layerOrder={LayerOrder}, topLeftAnchor={TopLeftAnchor}]";

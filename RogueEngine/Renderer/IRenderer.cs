@@ -5,7 +5,7 @@ namespace RogueEngine.Renderer
 {
     public interface IRenderer
     {
-        void Render();
+        public void Render();
     }
 
 
