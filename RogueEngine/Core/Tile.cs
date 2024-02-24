@@ -1,7 +1,7 @@
 ﻿
 namespace RogueEngine.Core
 {
-    abstract class Tile
+    public abstract class Tile
     {
         // TileObject TileObject;
         // IPosition position

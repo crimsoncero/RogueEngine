@@ -2,7 +2,7 @@
 
 namespace RogueEngine.Core
 {
-    abstract class TileObject : ICloneable
+    public abstract class TileObject : ICloneable
     {
         // IPosition position
         // int OwndedBy 

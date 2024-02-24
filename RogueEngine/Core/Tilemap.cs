@@ -1,13 +1,12 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 
 namespace RogueEngine.Core
 {
-    public abstract class Tilemap : IEnumerable
+    public  class Tilemap : IEnumerable
     {
         //Tile[,] Map;
         // int indexer
-
+        public Tilemap() { }
 
         public IEnumerator GetEnumerator()
         {
@@ -26,7 +25,7 @@ namespace RogueEngine.Core
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 

@@ -1,4 +1,7 @@
-﻿using RogueEngine;
-using RogueEngine.Renderer;
+﻿using RogueEngine.Core;
 
 Console.WriteLine("Hello there");
+
+
+Tilemap tilemap = new Tilemap();
+

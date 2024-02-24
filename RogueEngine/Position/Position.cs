@@ -1,9 +1,4 @@
 ﻿
-using System;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Security.Cryptography.X509Certificates;
-
 namespace RogueEngine.Position
 {
     public readonly struct Position : IPosition
