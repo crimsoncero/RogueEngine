@@ -1,4 +1,4 @@
-﻿using RogueEngine.Position;
+﻿using RogueEngine.Positions;
 
 namespace RogueEngine.Renderer.Console
 {

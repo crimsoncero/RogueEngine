@@ -43,5 +43,6 @@ namespace RogueEngine.Positions
 
         public static Position operator +(Position a, Position b) => new Position(a.X + b.X, a.Y + b.Y);
         public static Position operator -(Position a, Position b) => new Position(a.X - b.X, a.Y - b.Y);
+        public static Position operator *(Position a, int scalar) => new Position(a.X * scalar, a.Y * scalar);
     }
 }
