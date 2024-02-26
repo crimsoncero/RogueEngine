@@ -1,15 +1,15 @@
 ﻿
-using System;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Security.Cryptography.X509Certificates;
-
-namespace RogueEngine.Position
+namespace RogueEngine.Positions
 {
     public readonly struct Position : IPosition
     {
-        public int X { get; init; }
-        public int Y { get; init; }
+        public static readonly Position UP = new Position(0, -1);
+        public static readonly Position DOWN = new Position(0, 1);
+        public static readonly Position RIGHT = new Position(1, 0);
+        public static readonly Position LEFT = new Position(-1, 0);
+
+        public int X { get; init; } // Cols
+        public int Y { get; init; } // Rows
 
         public Position(int x, int y)
         {
