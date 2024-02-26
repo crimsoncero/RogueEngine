@@ -8,6 +8,8 @@ namespace RogueEngine.Util
 
         public FiniteQueue(int capacity) : base()
         {
+            if (capacity < 0)
+                throw new ArgumentOutOfRangeException(nameof(capacity), capacity, "Can't have negetive capacity");
             Capacity = capacity;
         }
 
