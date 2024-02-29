@@ -9,6 +9,8 @@ namespace RogueEngine.Positions
         public int Y { get; init; }
 
 
+
+
         public IPosition Add(IPosition b);
         public static IPosition operator +(IPosition a, IPosition b) => a.Add(b);
         public IPosition Subtract(IPosition b);

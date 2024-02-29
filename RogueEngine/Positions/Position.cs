@@ -3,8 +3,8 @@ namespace RogueEngine.Positions
 {
     public readonly struct Position : IPosition
     {
-        public static readonly Position UP = new Position(0, -1);
-        public static readonly Position DOWN = new Position(0, 1);
+        public static readonly Position UP = new Position(0, 1);
+        public static readonly Position DOWN = new Position(0, -1);
         public static readonly Position RIGHT = new Position(1, 0);
         public static readonly Position LEFT = new Position(-1, 0);
 

@@ -1,4 +1,6 @@
 ﻿
+using System.Collections;
+
 namespace RogueEngine.Movements
 {
     /// <summary>
@@ -11,13 +13,21 @@ namespace RogueEngine.Movements
         public ICollection<T> Points { get { return _points; } }
         public T this[int i] { get { return _points[i]; } }
 
-        public Path(List<T> list)
+        private Path(T vector)
         {
-            _points = list.ToArray();
+            // Takes an orthagonal (0,y)/(x,0) or diagonal (x,x) vectors and create a linear path from it.
+            _points = new T[] { vector };
+        }
+
+        private Path(IEnumerable<Path<T>> paths)
+        {
+            // Takes an Enumerable collection of paths and concats them in order to create one complex path.
+            throw new NotImplementedException();
         }
 
         private T[] Subdivide(T[] vectors)
         {
+            // Divides a linear vector into its points.
             throw new NotImplementedException();
         }
 
@@ -26,6 +36,16 @@ namespace RogueEngine.Movements
             throw new NotImplementedException();
         }
 
+
+        #region Base Paths Factory Methods
+
+        public static Path<Position> Up(int length)
+        {
+            return new Path<Position>(new Position(0, length));
+        }
+
+
+        #endregion  
 
     }
 }
