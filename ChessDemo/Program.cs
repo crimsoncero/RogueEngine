@@ -1,11 +1,16 @@
 ﻿using RogueEngine;
 using RogueEngine.Positions;
-using RogueEngine.Renderer;
+using RogueEngine.Movements;
 using RogueEngine.Util;
 
-IPosition a = new Position(03, 2);
-IPosition b = new Position(6, 4);
-a /= 0;
-Console.WriteLine(a);
+Position a = new Position(03, 2);
+Position b = new Position(6, 4);
 
+List<Position> positions = new List<Position>();
+positions.Add(a);
+positions.Add(b);
+
+Path<Position> path = new Path<Position>(positions);
+
+Console.WriteLine(path.Points.ElementAt(0));
 

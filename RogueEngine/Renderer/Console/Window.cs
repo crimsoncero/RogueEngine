@@ -1,5 +1,4 @@
-﻿using RogueEngine.Positions;
-
+﻿
 namespace RogueEngine.Renderer.Console
 {
     public abstract class Window

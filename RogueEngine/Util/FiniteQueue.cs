@@ -1,5 +1,4 @@
 ﻿
-
 namespace RogueEngine.Util
 {
     public class FiniteQueue<T> : Queue<T>
