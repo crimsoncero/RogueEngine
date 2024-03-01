@@ -5,6 +5,7 @@ using RogueEngine.Movements;
 using RogueEngine.Util;
 using RogueEngine.Renderer.Console;
 using System.ComponentModel;
+using ChessDemo;
 
 
 
@@ -22,7 +23,7 @@ WhiteChessTilePrefab.AddComponent<TileRenderer>(TileRenderer);
 
 
 // Set up the tilemap and its settings.
-Tilemap chessBoard = new ChessTilemap();
+Tilemap chessBoard = new Chessboard();
 
 
 // Insert assets into the game.
