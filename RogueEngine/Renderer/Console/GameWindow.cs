@@ -3,18 +3,22 @@ namespace RogueEngine.Renderer.Console
 {
     public class GameWindow : Window
     {
-        public int TilemapIndex { get; set; }
-        public char[] RowNames { get; set; }
-        public char[] ColumnNames { get; set; }
+        public Tilemap Tilemap { get; set; }
+        public char[] RowChar { get; set; }
+        public char[] ColChar { get; set; }
         public bool RenderGuidelines { get; set; }
 
-        public GameWindow(int width, int height, int layerOrder, IPosition topLeftAnchor, int tilemapIndex,
-            char[] rowNames, char[] columnNames, bool renderGuidelines) : base(width, height, layerOrder, topLeftAnchor)
+        public GameWindow(Tilemap tilemap, int layerOrder, IPosition topLeftAnchor,
+            char[] rowChar, char[] colChar, bool renderGuidelines) : base(0, 0, layerOrder, topLeftAnchor)
         {
-            TilemapIndex = tilemapIndex;
-            RowNames = rowNames;
-            ColumnNames = columnNames;
+            Tilemap = tilemap;
+            RowChar = rowChar;
+            ColChar = colChar;
             RenderGuidelines = renderGuidelines;
+
+            //Make a method to calculate the size of the window according to the tilemap given.
+            Width = 0; 
+            Height = 0;
         }
 
 
@@ -23,22 +27,22 @@ namespace RogueEngine.Renderer.Console
         {
             base.RenderWindow();
             //Draw2DArray(TileMapIndex);
+
+            DrawTilemapBasic();
         }
 
 
-        private void Draw2DArray(object[,] array)
+        private void DrawTilemap()
         {
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    System.Console.Write(array[i, j] + "\t");
-                }
-                System.Console.WriteLine();
-            }
+            // This will be the complicated array;
         }
 
-
+        private void DrawTilemapBasic()
+        {
+            // Basic rendering with predetermined appearances:
+            // Tile: [ ]
+            // Object: 0  
+        }
 
 
     }

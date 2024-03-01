@@ -4,6 +4,6 @@ using RogueEngine.Movements;
 using RogueEngine.Util;
 
 
-IPosition b = IPosition.UP;
+IPosition b = Position.UP;
 
 Console.WriteLine(b);

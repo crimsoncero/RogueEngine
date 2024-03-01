@@ -40,25 +40,31 @@ namespace RogueEngine.Positions
             return (X << 16) ^ Y;
         }
 
-        public IPosition Add(IPosition b)
+
+
+        public Position Add(Position b)
         {
             return new Position(X + b.X, Y + b.Y);
         }
-
-        public IPosition Subtract(IPosition b)
+        public static Position operator +(Position a, Position b) => a.Add(b);
+        public Position Subtract(Position b)
         {
             return new Position(X - b.X, Y - b.Y);
         }
+        public static Position operator -(Position a, Position b) => a.Subtract(b);
 
-        public IPosition Multiply(int scalar)
+        public Position Multiply(int scalar)
         {
             return new Position(X * scalar, Y * scalar);
         }
+        public static Position operator *(Position a, int scalar) => a.Multiply(scalar);
 
-        public IPosition Divide(int divisor)
+        public Position Divide(int divisor)
         {
             // Return null if dividing by zero?
             return new Position(X / divisor, Y / divisor);
         }
+        public static Position operator /(Position a, int divisor) => a.Divide(divisor);
+
     }
 }

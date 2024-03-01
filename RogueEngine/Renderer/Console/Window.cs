@@ -3,7 +3,13 @@ namespace RogueEngine.Renderer.Console
 {
     public abstract class Window
     {
-        //const char[] _border = new char[] { };
+        private const char BORDER_TOP = '▀';
+        private const char BORDER_BOTTOM = '▄';
+        private const char BORDER_LEFT = '▌';
+        private const char BORDER_RIGHT = '▐';
+
+
+
         public int Width { get; set; }
         public int Height { get; set; }
         public int LayerOrder { get; set; }
@@ -17,32 +23,25 @@ namespace RogueEngine.Renderer.Console
             TopLeftAnchor = topLeftAnchor;
         }
 
-        public Window(Window other)
-        {
-            Width = other.Width;
-            Height = other.Height;
-            LayerOrder = other.LayerOrder;
-            TopLeftAnchor = other.TopLeftAnchor;
-        }
-
         public virtual void RenderWindow()
         {
-            // Print a blank window with edges 
-            /* Right Border: 221  ▌
-             * Left Border:222 ▐
-             * Top Border: 223 ▀
-             * Bot Border: 220 ▄
-             */
+            DrawBorder();
+
         }
+
+        protected virtual void DrawBorder()
+        {
+
+        }
+
+        protected void Clear(bool clearBorder)
+        {
+            // Clears the window, if clearBorder is true, clears the borders as well.
+        }
+
         public override string ToString()
         {
             return $"Window [width={Width}, height={Height}, layerOrder={LayerOrder}, topLeftAnchor={TopLeftAnchor}]";
-        }
-
-        public bool Equals(Window other)
-        {
-            if (other == null) return false;
-            return Width == other.Width && Height == other.Height && LayerOrder == other.LayerOrder && TopLeftAnchor == other.TopLeftAnchor;
         }
     }
 }
