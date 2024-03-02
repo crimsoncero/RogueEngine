@@ -20,6 +20,5 @@ namespace RogueEngine.Util
                Dequeue();
             }
         }
-
     }
 }

@@ -29,6 +29,6 @@ namespace RogueEngine.Renderer.Console
         {
             //Draws the log in the window.
         }
-
+        
     }
 }
