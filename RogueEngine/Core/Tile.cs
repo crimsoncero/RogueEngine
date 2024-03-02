@@ -3,6 +3,8 @@ using RogueEngine.Position;
 
 namespace RogueEngine.Core
 {
+
+
     public abstract class Tile
     {
         public TileObject TileObject { get; set; }
