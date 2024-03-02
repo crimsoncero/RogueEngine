@@ -28,21 +28,21 @@ namespace RogueEngine.Renderer.Console
             base.RenderWindow();
             //Draw2DArray(TileMapIndex);
 
-            DrawTilemapBasic();
+            DrawTilemap();
         }
 
 
         private void DrawTilemap()
         {
             // This will be the complicated array;
+
+            var TileRenderer = (TileConsoleRenderer)Tilemap[0, 0].Renderer;
+            TileRenderer.DrawTileLeft();
+            TileRenderer.DrawTileRight();
+
         }
 
-        private void DrawTilemapBasic()
-        {
-            // Basic rendering with predetermined appearances:
-            // Tile: [ ]
-            // Object: 0  
-        }
+        
 
 
     }

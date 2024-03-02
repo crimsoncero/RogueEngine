@@ -1,5 +1,4 @@
 ﻿//Emily
-using RogueEngine.Position;
 
 namespace RogueEngine.Core
 {
@@ -8,6 +7,10 @@ namespace RogueEngine.Core
     {
         public IPosition Position { get; }
         public int OwnedBy { get; set; }
+
+
+        //public Movement Movement { get; set; }
+        public TileObjectRenderer Renderer { get; set; }
 
         public TileObject(int ownedBy)
         {
@@ -28,7 +31,6 @@ namespace RogueEngine.Core
         //moving the tile object to another tile
         public virtual void MoveToTile(Tile currentTile, Tile targetTile)
         {
-            
             Console.WriteLine($"Moving tile object from {currentTile.Position} to {targetTile.Position}");
         }
 

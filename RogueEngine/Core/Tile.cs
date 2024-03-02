@@ -1,15 +1,15 @@
 ﻿//Emily
-using RogueEngine.Position;
 
 namespace RogueEngine.Core
 {
-
 
     public abstract class Tile
     {
         public TileObject TileObject { get; set; }
         public IPosition Position { get; }
         public int OwnedBy { get; set; }
+
+        public TileRenderer Renderer { get; set; }
 
         //tile with full parameters
         public Tile(TileObject tileObject, IPosition position, int ownedBy)
