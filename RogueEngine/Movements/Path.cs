@@ -3,7 +3,6 @@ using System.Collections;
 
 namespace RogueEngine.Movements
 {
-
     public enum PathDirections
     {
         Up,
@@ -60,7 +59,7 @@ namespace RogueEngine.Movements
                 current += iterator;
                 positions.Add(current);
             }
-            while (current != vector); //Super unsafe, but its only being used with factory methods created specificly for this and checked.
+            while (current != vector);
 
             return positions;
 
