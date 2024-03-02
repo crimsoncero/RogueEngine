@@ -3,6 +3,7 @@ using RogueEngine.Position;
 
 namespace RogueEngine.Core
 {
+
     public abstract class TileObject : ICloneable
     {
         public IPosition Position { get; }

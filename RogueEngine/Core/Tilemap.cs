@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace RogueEngine.Core
 {
+
     public class Tilemap : IEnumerable<Tile>
     {
         private readonly Tile[,] tiles;
