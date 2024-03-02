@@ -82,8 +82,6 @@ namespace RogueEngine.Movements
                 Position newPosition =  (Position)path[i] + adjustment;
                 _points.Add(newPosition);
             }
-
-
         }
 
 

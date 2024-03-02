@@ -2,7 +2,7 @@
 namespace RogueEngine.Movements
 {
     /// <summary>
-    /// A Static utility class to help create more complicated Path Collections.
+    /// A Static utility class to create more complicated Path Collections.
     /// </summary>
     public class PathMaker
     {
@@ -11,6 +11,17 @@ namespace RogueEngine.Movements
             return Path.Create(direction, length);
         }
 
+        public static Path Complex(List<(PathDirections direction, int length)> pathDirections)
+        {
+            Path path = Path.Create(pathDirections[0].direction, pathDirections[0].length);
+
+            for (int i = 1; i < pathDirections.Count; i++)
+            {
+                path.Concat(Path.Create(pathDirections[i].direction, pathDirections[i].length));
+            }
+
+            return path;
+        }
 
 
         public static ICollection<Path> EightDirectional(int length)
@@ -41,6 +52,10 @@ namespace RogueEngine.Movements
         {
             throw new NotImplementedException();
         }
+
+
+
+        
 
     }
 }
