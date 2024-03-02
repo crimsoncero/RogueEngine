@@ -19,7 +19,8 @@ namespace RogueEngine.Renderer.Console
         public int PaddingUp { get; set; }
         private List<string> logEntries = new List<string>();
 
-        public LogWindow(int width, int height, int layerOrder, IPosition topLeftAnchor, LineWrappingType wrappingType, int paddingUp)
+        public LogWindow(int width, int height, int layerOrder, IPosition topLeftAnchor,
+            LineWrappingType wrappingType, int paddingUp)
             : base(width, height, layerOrder, topLeftAnchor)
         {
             WrappingType = wrappingType;
