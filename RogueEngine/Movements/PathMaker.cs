@@ -6,7 +6,7 @@ namespace RogueEngine.Movements
     /// </summary>
     public class PathMaker
     {
-        public static Path Line(PathDirections direction, int length)
+        public static Path Linear(PathDirections direction, int length)
         {
             return Path.Create(direction, length);
         }

@@ -4,7 +4,7 @@ using ChessDemo;
 using RogueEngine.Movements;
 using Path = RogueEngine.Movements.Path;
 
-
+Path path = PathMaker.Linear(PathDirections.Up, 5);
 Console.WriteLine();
 
 //Game game = Game.CreateConsoleGame(); // Factory method for creating a game with specific settings: Renderer type and so on,
