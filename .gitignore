@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/RogueEngine/Core/Tile.cs
+/RogueEngine/Core/Tilemap.cs
+/RogueEngine/Core/TileObject.cs
