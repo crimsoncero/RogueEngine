@@ -25,17 +25,12 @@ namespace RogueEngine.Movements
     {
         private List<Position> _points;
         public IPosition this[int i] { get { return _points[i]; } }
+        public int Count { get { return _points.Count; } }
 
         private Path(Position vector)
         {
             // Takes an orthagonal (0,y)/(x,0) or diagonal (x,x) vectors and create a linear path from it.
             _points = Subdivide(vector);
-        }
-
-        private Path(IEnumerable<Path> paths)
-        {
-            // Takes an Enumerable collection of paths and concats them in order to create one complex path.
-            throw new NotImplementedException();
         }
 
         private List<Position> Subdivide(Position vector)
@@ -71,14 +66,35 @@ namespace RogueEngine.Movements
 
         }
 
-        private void ConcatPaths(Path path)
+        /// <summary>
+        /// Joins the path given to the current path.
+        /// </summary>
+        /// <param name="path"> The path to concat</param>
+        public void Concat(Path path)
         {
-            throw new NotImplementedException();
+            if (path.Count == 0)
+                return; // Empty Path
+
+            Position adjustment = _points.Last();
+            for(int i = 0; i < path.Count; i++)
+            {
+                // Adjust the position in the joined path to the end point of the current path.
+                Position newPosition =  (Position)path[i] + adjustment;
+                _points.Add(newPosition);
+            }
+
+
         }
 
 
         #region Base Paths Factory Methods
 
+        /// <summary>
+        /// Create a path in the direction and length specified.
+        /// </summary>
+        /// <param name="direction"> The direction the path takes</param>
+        /// <param name="length">The length of the path. Note: The length in diagonals is not the actual vector magnitude, but the absolute X and Y values of the final position.</param>
+        /// <returns></returns>
         public static Path Create(PathDirections direction, int length)
         {
             Position vector = Position.ZERO;
