@@ -7,6 +7,7 @@ namespace RogueEngine.Positions
         public static readonly Position DOWN = new Position(0, -1);
         public static readonly Position RIGHT = new Position(1, 0);
         public static readonly Position LEFT = new Position(-1, 0);
+        public static readonly Position ZERO = new Position(0, 0);
 
         public int X { get; init; } // Cols
         public int Y { get; init; } // Rows
@@ -41,6 +42,9 @@ namespace RogueEngine.Positions
         }
 
 
+        public static bool operator ==(Position a, Position b) => a.Equals(b);
+        public static bool operator !=(Position a, Position b) => !a.Equals(b);
+        
 
         public Position Add(Position b)
         {
