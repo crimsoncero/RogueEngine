@@ -1,7 +1,7 @@
 ﻿// Amit  //
 
 
-namespace RogueEngine.Position
+namespace RogueEngine.Positions
 {
     public interface IPosition
     {

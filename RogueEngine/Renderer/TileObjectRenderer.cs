@@ -1,7 +1,8 @@
 ﻿
+
 namespace RogueEngine.Renderer
 {
-    internal class BasicRenderer
+    public abstract class TileObjectRenderer 
     {
     }
 }
