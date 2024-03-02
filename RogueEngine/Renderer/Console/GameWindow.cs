@@ -36,9 +36,19 @@ namespace RogueEngine.Renderer.Console
         {
             // This will be the complicated array;
 
-            var TileRenderer = (TileConsoleRenderer)Tilemap[0, 0].Renderer;
-            TileRenderer.DrawTileLeft();
-            TileRenderer.DrawTileRight();
+            Tile tile = Tilemap[0, 0];
+            var tileRenderer = (TileConsoleRenderer)tile.Renderer;
+            tileRenderer.DrawTileLeft();
+            if(tile.TileObject != null)
+            {
+                var tileObjectRenderer = (TileObjectConsoleRenderer)Tilemap[0, 0].TileObject.Renderer;
+                tileObjectRenderer.DrawTileObject();
+            }
+            else
+            {
+                System.Console.Write(" ");
+            }
+            tileRenderer.DrawTileRight();
 
         }
 
