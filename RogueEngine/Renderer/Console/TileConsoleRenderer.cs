@@ -16,13 +16,13 @@ namespace RogueEngine.Renderer.Console
             BackgroundColor = backgroundColor;
         }
 
-        public void RenderTileLeft()
+        public void DrawTileLeft()
         {
             ConsoleUtil.ChangeColor(ForegroundColor, BackgroundColor);
             System.Console.Write(LeftSymbol);
         }
 
-        public void RenderTileRight()
+        public void DrawTileRight()
         {
             ConsoleUtil.ChangeColor(ForegroundColor, BackgroundColor);
             System.Console.Write(RightSymbol);

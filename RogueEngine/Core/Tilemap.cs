@@ -6,7 +6,7 @@ namespace RogueEngine.Core
 
     public class Tilemap : IEnumerable<Tile>
     {
-        private readonly Tile[,] tiles;
+        private Tile[,] tiles;
 
         public int Width { get; }
         public int Height { get; }
@@ -16,6 +16,12 @@ namespace RogueEngine.Core
         {
             get { return tiles[x, y]; }
             set { tiles[x, y] = value; }
+        }
+
+        public Tile this[IPosition position]
+        {
+            get { return this[position.X, position.Y]; }
+            set { this[position.X, position.Y] = value; }
         }
 
         //implementation of IEnumerable and IEnumerator
@@ -37,5 +43,32 @@ namespace RogueEngine.Core
         {
             return x >= 0 && x < Width && y >= 0 && y < Height;
         }
+
     }
+
+
+    public class TilemapEnum : IEnumerator<Tile>
+    {
+        private Tile[,] tiles;
+
+        public Tile Current => throw new NotImplementedException();
+
+        object IEnumerator.Current => throw new NotImplementedException();
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool MoveNext()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

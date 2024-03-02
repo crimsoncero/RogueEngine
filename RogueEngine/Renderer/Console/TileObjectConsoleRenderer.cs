@@ -14,7 +14,7 @@
             BackgroundColor = backgroundColor;
         }
 
-        public void RenderTileObject()
+        public void DrawTileObject()
         {
             ConsoleUtil.ChangeColor(ForegroundColor, BackgroundColor);
             System.Console.Write(Symbol);
