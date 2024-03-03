@@ -1,6 +1,10 @@
 ﻿using Path = RogueEngine.Movements.Path;
 
 
+string str = "GEALGEA   EKFAEeewafaew231r13r feakmfkael efaewFELAFEAf32rl132;rmlafawe 243r32faf5Q4R32";
+str = str.LowerCaseTrim();
+Console.WriteLine(str);
+
 Path path = PathMaker.Complex(new List<(PathDirections dir, int length)>() { (PathDirections.Up, 2), (PathDirections.Right, 2) });
 Console.WriteLine();
 

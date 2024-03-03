@@ -36,14 +36,6 @@ namespace RogueEngine.Movements
         {
             throw new NotImplementedException();
         }
-        public static ICollection<Path> OrthagonalUp(int length)
-        {
-            throw new NotImplementedException();
-        }
-        public static ICollection<Path> OrthagonalDown(int length)
-        {
-            throw new NotImplementedException();
-        }
         public static ICollection<Path> DiagonalUp(int length)
         {
             throw new NotImplementedException();
