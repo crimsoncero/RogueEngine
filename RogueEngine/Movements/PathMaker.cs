@@ -54,8 +54,5 @@ namespace RogueEngine.Movements
         }
 
 
-
-        
-
     }
 }
