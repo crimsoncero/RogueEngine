@@ -69,7 +69,7 @@ namespace RogueEngine.Movements
         /// Joins the path given to the current path.
         /// </summary>
         /// <param name="path"> The path to concat</param>
-        public void Concat(Path path)
+        internal void Concat(Path path)
         {
             if (path.Count == 0)
                 return; // Empty Path
@@ -90,7 +90,7 @@ namespace RogueEngine.Movements
         /// <param name="direction"> The direction the path takes</param>
         /// <param name="length">The length of the path. Note: The length in diagonals is not the actual vector magnitude, but the absolute X and Y values of the final position.</param>
         /// <returns></returns>
-        public static Path Create(PathDirections direction, int length)
+        internal static Path Create(PathDirections direction, int length)
         {
             Position vector = Position.ZERO;
 
