@@ -1,8 +1,4 @@
-﻿using RogueEngine;
-using RogueEngine.Renderer.Console;
-using ChessDemo;
-using RogueEngine.Movements;
-using Path = RogueEngine.Movements.Path;
+﻿using Path = RogueEngine.Movements.Path;
 
 
 Path path = PathMaker.Complex(new List<(PathDirections dir, int length)>() { (PathDirections.Up, 2), (PathDirections.Right, 2) });
