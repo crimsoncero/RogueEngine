@@ -84,8 +84,6 @@ namespace RogueEngine.Movements
         }
 
 
-        #region Base Paths Factory Methods
-
         /// <summary>
         /// Create a path in the direction and length specified.
         /// </summary>
@@ -126,9 +124,6 @@ namespace RogueEngine.Movements
 
             return new Path(vector);
         }
-
-
-        #endregion
 
     }
 }
