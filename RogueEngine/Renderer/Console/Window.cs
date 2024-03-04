@@ -39,7 +39,7 @@ namespace RogueEngine.Renderer.Console
             {
                 Console.WriteLine(middleRow); // Middle rows
             }
-            Console.WriteLine(topBottomRow); // Bottom border
+            Console.WriteLine(bottomBorder); // Bottom border
 
         }
 
