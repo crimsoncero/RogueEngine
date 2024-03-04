@@ -20,7 +20,7 @@ namespace RogueEngine.Movements
     /// An immutable collection of all the points in a 2D tilemap path.
     /// </summary>
     /// <typeparam name="T"> A class that implements IPosition</typeparam>
-    public class Path
+    public sealed class Path
     {
         private List<Position> _points;
         public IPosition this[int i] { get { return _points[i]; } }
