@@ -1,11 +1,12 @@
 ﻿using Path = RogueEngine.Movements.Path;
 
 
-string str = "GEALGEA   EKFAEeewafaew231r13r feakmfkael efaewFELAFEAf32rl132;rmlafawe 243r32faf5Q4R32";
-str = str.LowerCaseTrim();
-Console.WriteLine(str);
+Path path = PathMaker.Complex(new List<(PathDirections dir, int length)>() { (PathDirections.Up, 2), (PathDirections.Right, 1) });
 
-Path path = PathMaker.Complex(new List<(PathDirections dir, int length)>() { (PathDirections.Up, 2), (PathDirections.Right, 2) });
+
+IPosition p = path[2];
+
+
 Console.WriteLine();
 
 //Game game = Game.CreateConsoleGame(); // Factory method for creating a game with specific settings: Renderer type and so on,

@@ -4,7 +4,7 @@ namespace RogueEngine.Movements
     /// <summary>
     /// A Static utility class to create more complicated Path Collections.
     /// </summary>
-    public class PathMaker
+    public static class PathMaker
     {
         public static Path Linear(PathDirections direction, int length)
         {

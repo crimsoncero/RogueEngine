@@ -28,7 +28,7 @@ namespace RogueEngine.Movements
 
         private Path(Position vector)
         {
-            // Takes an orthagonal (0,y)/(x,0) or diagonal (x,x) vectors and create a linear path from it.
+            // Takes an orthagonal (0,y)/(x,0) or diagonal (|x|,|x|) vectors and create a linear path from it.
             _points = Subdivide(vector);
         }
 
