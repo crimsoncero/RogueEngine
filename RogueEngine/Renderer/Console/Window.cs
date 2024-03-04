@@ -1,6 +1,7 @@
 ﻿
 namespace RogueEngine.Renderer.Console
 {
+    using System;
     public abstract class Window
     {
         private const char BORDER_TOP = '▀';
@@ -31,12 +32,37 @@ namespace RogueEngine.Renderer.Console
 
         protected virtual void DrawBorder()
         {
+            char topBorder = '▀', bottomBorder = '▄', leftBorder = '▐', rightBorder = '▌';
+            string topBottomRow = topBorder.ToString().PadRight(Width - 1, topBorder) + topBorder;
+            string middleRow = leftBorder + new string(' ', Width - 2) + rightBorder;
 
+            Console.WriteLine(topBottomRow); // Top border
+            for (int i = 1; i < Height - 1; i++)
+            {
+                Console.WriteLine(middleRow); // Middle rows
+            }
+            Console.WriteLine(bottomBorder); // Bottom border
         }
 
-        protected void Clear(bool clearBorder)
+        public void ClearWindow(bool clearFrame = false)
         {
-            // Clears the window, if clearBorder is true, clears the borders as well.
+            Console.SetCursorPosition(TopLeftAnchor.X, TopLeftAnchor.Y);
+
+            if (clearFrame)
+            {
+                for (int i = 0; i < Height; i++)
+                {
+                    Console.WriteLine(new string(' ', Width));
+                }
+            }
+            else
+            {
+                for (int row = 1; row < Height - 1; row++)
+                {
+                    Console.SetCursorPosition(TopLeftAnchor.X + 1, TopLeftAnchor.Y + row);
+                    Console.Write(new string(' ', Width - 2));
+                }
+            }
         }
 
         public override string ToString()
