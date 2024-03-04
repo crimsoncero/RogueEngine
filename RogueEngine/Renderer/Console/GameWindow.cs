@@ -15,10 +15,14 @@ namespace RogueEngine.Renderer.Console
             RowChar = rowChar;
             ColChar = colChar;
             RenderGuidelines = renderGuidelines;
+            CalculateWindowSize();
+        }
 
-            //Make a method to calculate the size of the window according to the tilemap given.
-            Width = 0; 
-            Height = 0;
+
+        private void CalculateWindowSize()
+        {
+            Width = Tilemap.Width * (RowChar.Length + (RenderGuidelines ? 2 : 0));
+            Height = Tilemap.Height * (ColChar.Length + (RenderGuidelines ? 1 : 0));
         }
 
 
