@@ -12,6 +12,7 @@ namespace RogueEngine.Util
             return true;
         }
 
+
         public static bool IsInBounds<T>(this T[,] matrix, int x, int y)
         {
             if (x < 0 || x >= matrix.GetLength(0))
