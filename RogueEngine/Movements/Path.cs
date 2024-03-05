@@ -22,6 +22,9 @@ namespace RogueEngine.Movements
     /// <typeparam name="T"> A class that implements IPosition</typeparam>
     public sealed class Path
     {
+        // Make into a tree data structure at some point in the far future... Never gonna happen right?...
+
+
         private List<Position> _points;
         public IPosition this[int i] { get { return _points[i]; } }
         public int Count { get { return _points.Count; } }

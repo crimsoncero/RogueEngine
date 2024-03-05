@@ -14,6 +14,7 @@ namespace RogueEngine.Positions
 
         public Position(int x, int y)
         {
+            
             X = x;
             Y = y;
         }
