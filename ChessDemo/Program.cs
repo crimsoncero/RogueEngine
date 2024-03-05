@@ -1,13 +1,15 @@
 ﻿using Path = RogueEngine.Movements.Path;
 
 
-Path path = PathMaker.Complex(new List<(PathDirections dir, int length)>() { (PathDirections.Up, 2), (PathDirections.Right, 1) });
+//Path path = PathMaker.Complex(new List<(PathDirections dir, int length)>() { (PathDirections.Up, 2), (PathDirections.Right, 1) });
 
 
-IPosition p = path[2];
+//IPosition p = path[2];
 
 
-Console.WriteLine();
+//Console.WriteLine();
+
+
 
 //Game game = Game.CreateConsoleGame(); // Factory method for creating a game with specific settings: Renderer type and so on,
 
@@ -52,9 +54,54 @@ Console.WriteLine();
 //game.Start(); // Starts the game and the show is on.
 
 
+using RogueEngine.Movements;
+using System;
 
+class Program
+{
+    static void Main(string[] args)
+    {
+        TestPathMakerMethods(0);
+    }
 
+    static void TestPathMakerMethods(int pathLength)
+    {
+        Console.WriteLine($"Testing PathMaker methods with path length = {pathLength}\n");
 
+        // EightDirectional
+        var eightDirectionalPaths = PathMaker.EightDirectional(pathLength);
+        PrintPaths("EightDirectional", eightDirectionalPaths);
 
+        // OrthogonalAll
+        var orthogonalPaths = PathMaker.OrthogonalAll(pathLength);
+        PrintPaths("OrthogonalAll", orthogonalPaths);
 
+        // DiagonalAll
+        var diagonalAllPaths = PathMaker.DiagonalAll(pathLength);
+        PrintPaths("DiagonalAll", diagonalAllPaths);
+
+        // DiagonalUp
+        var diagonalUpPaths = PathMaker.DiagonalUp(pathLength);
+        PrintPaths("DiagonalUp", diagonalUpPaths);
+
+        // DiagonalDown
+        var diagonalDownPaths = PathMaker.DiagonalDown(pathLength);
+        PrintPaths("DiagonalDown", diagonalDownPaths);
+    }
+
+    static void PrintPaths(string methodName, ICollection<Path> paths)
+    {
+        Console.WriteLine($"{methodName}:");
+        foreach (var path in paths)
+        {
+            Console.Write("[ ");
+            for (int i = 0; i < path.Count; i++)
+            {
+                Console.Write($"({path[i].X}, {path[i].Y}) ");
+            }
+            Console.WriteLine("]");
+        }
+        Console.WriteLine();
+    }
+}
 
