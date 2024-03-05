@@ -8,9 +8,10 @@ namespace RogueEngine.Movements
     {
         public static Path Linear(PathDirections direction, int length)
         {
-            if (length <= 0) return null;
+            if (length <= 0)
+                return null;
             
-            else return Path.Create(direction, length);
+            return Path.Create(direction, length);
         }
 
         public static Path Complex(List<(PathDirections direction, int length)> pathDirections)
