@@ -1,16 +1,6 @@
 ﻿using Path = RogueEngine.Movements.Path;
 
 
-//Path path = PathMaker.Complex(new List<(PathDirections dir, int length)>() { (PathDirections.Up, 2), (PathDirections.Right, 1) });
-
-
-//IPosition p = path[2];
-
-
-//Console.WriteLine();
-
-
-
 //Game game = Game.CreateConsoleGame(); // Factory method for creating a game with specific settings: Renderer type and so on,
 
 //// Create all the tile objects and set up their components.
@@ -53,9 +43,6 @@
 
 //game.Start(); // Starts the game and the show is on.
 
-
-using RogueEngine.Movements;
-using System;
 
 class Program
 {

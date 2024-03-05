@@ -14,6 +14,11 @@ namespace RogueEngine.Movements
             return Path.Create(direction, length);
         }
 
+        /// <summary>
+        /// Create a complex path by giving a set of directions and lengths.
+        /// </summary>
+        /// <param name="pathDirections"></param>
+        /// <returns></returns>
         public static Path Complex(List<(PathDirections direction, int length)> pathDirections)
         {
             Path path = Path.Create(pathDirections[0].direction, pathDirections[0].length);
