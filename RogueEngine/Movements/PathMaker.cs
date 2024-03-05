@@ -23,28 +23,65 @@ namespace RogueEngine.Movements
             return path;
         }
 
-
         public static ICollection<Path> EightDirectional(int length)
         {
-            throw new NotImplementedException();
-        }
-        public static ICollection<Path> OrthagonalAll(int length)
-        {
-            throw new NotImplementedException(); 
-        }
-        public static ICollection<Path> DiagonalAll(int length)
-        {
-            throw new NotImplementedException();
-        }
-        public static ICollection<Path> DiagonalUp(int length)
-        {
-            throw new NotImplementedException();
-        }
-        public static ICollection<Path> DiagonalDown(int length)
-        {
-            throw new NotImplementedException();
+            var paths = new List<Path>
+            {
+                Linear(PathDirections.Up, length),
+                Linear(PathDirections.UpRight, length),
+                Linear(PathDirections.Right, length),
+                Linear(PathDirections.DownRight, length),
+                Linear(PathDirections.Down, length),
+                Linear(PathDirections.DownLeft, length),
+                Linear(PathDirections.Left, length),
+                Linear(PathDirections.UpLeft, length)
+            };
+            return paths;
         }
 
+        public static ICollection<Path> OrthogonalAll(int length)
+        {
+            var paths = new List<Path>
+            {
+                Linear(PathDirections.Up, length),
+                Linear(PathDirections.Right, length),
+                Linear(PathDirections.Down, length),
+                Linear(PathDirections.Left, length)
+            };
+            return paths;
+        }
+
+        public static ICollection<Path> DiagonalAll(int length)
+        {
+            var paths = new List<Path>
+            {
+                Linear(PathDirections.UpRight, length),
+                Linear(PathDirections.DownRight, length),
+                Linear(PathDirections.DownLeft, length),
+                Linear(PathDirections.UpLeft, length)
+            };
+            return paths;
+        }
+
+        public static ICollection<Path> DiagonalUp(int length)
+        {
+            var paths = new List<Path>
+            {
+                Linear(PathDirections.UpRight, length),
+                Linear(PathDirections.UpLeft, length)
+            };
+            return paths;
+        }
+
+        public static ICollection<Path> DiagonalDown(int length)
+        {
+            var paths = new List<Path>
+            {
+                Linear(PathDirections.DownRight, length),
+                Linear(PathDirections.DownLeft, length)
+            };
+            return paths;
+        }
 
     }
 }
