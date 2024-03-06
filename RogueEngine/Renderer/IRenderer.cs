@@ -11,7 +11,6 @@ namespace RogueEngine.Renderer
         /// Create a renderer with its default settings.
         /// </summary>
         /// <returns></returns>
-        public IRenderer Create();
 
 
 

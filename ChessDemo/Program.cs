@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using ChessDemo;
+using System.Text;
 using Path = RogueEngine.Movements.Path;
 
 
@@ -49,16 +50,21 @@ class Program
 {
     static void Main(string[] args)
     {
-        ConsoleRenderer renderer = (ConsoleRenderer)ConsoleRenderer.Create();
-        var window = new EmptyWindow(5,5,new Position(0,0));
-        renderer.AddWindow(window);
-        renderer.Render();
+        //ConsoleRenderer renderer = (ConsoleRenderer)ConsoleRenderer.Create();
+        //var window = new EmptyWindow(5,5,new Position(0,0));
+        //renderer.AddWindow(window);
+        //renderer.Render();
 
         // stage 2
-        //Tilemap tilemap = new Tilemap();
-        //var window = new GameWindow(tilemap) { }
+        var chessBoard = new Chessboard();
 
-       
+        char[] colNames = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
+        char[] rowNames = new char[] { '1', '2', '3', '4', '5', '6', '7', '8' };
+        var gameWindow = new GameWindow(chessBoard, new Position(0, 0), rowNames, colNames, false);
+        //renderer.AddWindow(gameWindow);
+
+        //renderer.Render();
+
     }
 
     static void TestPathMakerMethods(int pathLength)

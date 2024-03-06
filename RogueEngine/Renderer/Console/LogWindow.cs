@@ -7,7 +7,7 @@ namespace RogueEngine.Renderer.Console
     {
         public FiniteQueue<string> Log { get; private set; }
 
-        public LogWindow(int width, int height, int layerOrder, IPosition topLeftAnchor) : base(width, height, layerOrder, topLeftAnchor)
+        public LogWindow(int width, int height, IPosition topLeftAnchor) : base(width, height, topLeftAnchor)
         {
             Log = new FiniteQueue<string>(height - 2);
         }
