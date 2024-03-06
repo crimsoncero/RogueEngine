@@ -24,6 +24,14 @@ namespace RogueEngine.Core
             set { this[position.X, position.Y] = value; }
         }
 
+        public Tilemap(int width, int height)
+        {
+            Width = width;
+            Height = height;
+            tiles = new Tile[Width, Height];
+        }
+
+
         //implementation of IEnumerable and IEnumerator
         public IEnumerator<Tile> GetEnumerator()
         {

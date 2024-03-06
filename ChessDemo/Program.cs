@@ -1,14 +1,8 @@
-﻿using Path = RogueEngine.Movements.Path;
+﻿using System.Text;
+using Path = RogueEngine.Movements.Path;
 
 
-string str = "GEALGEA   EKFAEeewafaew231r13r feakmfkael efaewFELAFEAf32rl132;rmlafawe 243r32faf5Q4R32";
-str = str.LowerCaseTrim();
-Console.WriteLine(str);
-
-Path path = PathMaker.Complex(new List<(PathDirections dir, int length)>() { (PathDirections.Up, 2), (PathDirections.Right, 2) });
-Console.WriteLine();
-
-//Game game = Game.CreateConsoleGame(); // Factory method for creating a game with specific settings: Renderer type and so on,
+//Game game = Game<ConsoleRenderer>.CreateGame(); // Factory method for creating a game with specific settings: Renderer type and so on,
 
 //// Create all the tile objects and set up their components.
 //TileObject WhiteRookPrefab = new Rook();
@@ -51,9 +45,60 @@ Console.WriteLine();
 //game.Start(); // Starts the game and the show is on.
 
 
+class Program
+{
+    static void Main(string[] args)
+    {
+        ConsoleRenderer renderer = (ConsoleRenderer)ConsoleRenderer.Create();
+        var window = new EmptyWindow(5,5,new Position(0,0));
+        renderer.AddWindow(window);
+        renderer.Render();
 
+        // stage 2
+        //Tilemap tilemap = new Tilemap();
+        //var window = new GameWindow(tilemap) { }
 
+       
+    }
 
+    static void TestPathMakerMethods(int pathLength)
+    {
+        Console.WriteLine($"Testing PathMaker methods with path length = {pathLength}\n");
 
+        // EightDirectional
+        var eightDirectionalPaths = PathMaker.EightDirectional(pathLength);
+        PrintPaths("EightDirectional", eightDirectionalPaths);
+        
+        // OrthogonalAll
+        var orthogonalPaths = PathMaker.OrthogonalAll(pathLength);
+        PrintPaths("OrthogonalAll", orthogonalPaths);
 
+        // DiagonalAll
+        var diagonalAllPaths = PathMaker.DiagonalAll(pathLength);
+        PrintPaths("DiagonalAll", diagonalAllPaths);
+
+        // DiagonalUp
+        var diagonalUpPaths = PathMaker.DiagonalUp(pathLength);
+        PrintPaths("DiagonalUp", diagonalUpPaths);
+
+        // DiagonalDown
+        var diagonalDownPaths = PathMaker.DiagonalDown(pathLength);
+        PrintPaths("DiagonalDown", diagonalDownPaths);
+    }
+
+    static void PrintPaths(string methodName, ICollection<Path> paths)
+    {
+        Console.WriteLine($"{methodName}:");
+        foreach (var path in paths)
+        {
+            Console.Write("[ ");
+            for (int i = 0; i < path.Count; i++)
+            {
+                Console.Write($"({path[i].X}, {path[i].Y}) ");
+            }
+            Console.WriteLine("]");
+        }
+        Console.WriteLine();
+    }
+}
 

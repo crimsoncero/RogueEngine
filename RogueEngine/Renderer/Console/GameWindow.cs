@@ -1,4 +1,6 @@
-﻿
+﻿//Lee
+
+
 namespace RogueEngine.Renderer.Console
 {
     public class GameWindow : Window
@@ -8,17 +10,21 @@ namespace RogueEngine.Renderer.Console
         public char[] ColChar { get; set; }
         public bool RenderGuidelines { get; set; }
 
-        public GameWindow(Tilemap tilemap, int layerOrder, IPosition topLeftAnchor,
-            char[] rowChar, char[] colChar, bool renderGuidelines) : base(0, 0, layerOrder, topLeftAnchor)
+        public GameWindow(Tilemap tilemap, IPosition topLeftAnchor,
+            char[] rowChar, char[] colChar, bool renderGuidelines) : base(0, 0, topLeftAnchor)
         {
             Tilemap = tilemap;
             RowChar = rowChar;
             ColChar = colChar;
             RenderGuidelines = renderGuidelines;
+            CalculateWindowSize();
+        }
 
-            //Make a method to calculate the size of the window according to the tilemap given.
-            Width = 0; 
-            Height = 0;
+
+        private void CalculateWindowSize()
+        {
+            Width = Tilemap.Width * (RowChar.Length + (RenderGuidelines ? 2 : 0));
+            Height = Tilemap.Height * (ColChar.Length + (RenderGuidelines ? 1 : 0));
         }
 
 
@@ -36,20 +42,29 @@ namespace RogueEngine.Renderer.Console
         {
             // This will be the complicated array;
 
-            Tile tile = Tilemap[0, 0];
-            var tileRenderer = (TileConsoleRenderer)tile.Renderer;
-            tileRenderer.DrawTileLeft();
-            if(tile.TileObject != null)
+            for(int i = Tilemap.Height - 1; i >= 0; i--)
             {
-                var tileObjectRenderer = (TileObjectConsoleRenderer)Tilemap[0, 0].TileObject.Renderer;
-                tileObjectRenderer.DrawTileObject();
-            }
-            else
-            {
-                System.Console.Write(" ");
-            }
-            tileRenderer.DrawTileRight();
 
+                // Set cursor position 
+                for(int j = 0; j < Tilemap.Width; j++)
+                {
+                    Tile tile = Tilemap[i, j];
+
+                    var tileRen = (TileConsoleRenderer)tile.Renderer;
+                    if (tileRen != null)
+                        tileRen = Settings.DefaultTileRenderer;
+
+                    tileRen.DrawTileLeft();
+                    
+                    if(tile.TileObject != null)
+                    {
+                        TOConsoleRenderer tORen;
+                        tORen = (TOConsoleRenderer)tile.TileObject.Renderer;
+                        if(tORen != null)
+                            tORen = Settings.DefaultTORenderer;
+                    }
+                }
+            }
         }
 
         

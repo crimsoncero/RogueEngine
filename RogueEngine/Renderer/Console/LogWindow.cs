@@ -1,4 +1,4 @@
-﻿
+﻿//Lee
 
 
 namespace RogueEngine.Renderer.Console
@@ -9,7 +9,7 @@ namespace RogueEngine.Renderer.Console
 
         public LogWindow(int width, int height, int layerOrder, IPosition topLeftAnchor) : base(width, height, layerOrder, topLeftAnchor)
         {
-            Log = new FiniteQueue<string>(height - 2); 
+            Log = new FiniteQueue<string>(height - 2);
         }
 
         public override void RenderWindow()
@@ -20,15 +20,23 @@ namespace RogueEngine.Renderer.Console
 
         public void InsertLogEntry(string logEntry)
         {
-            // cut down logEntry to be of length "Width - 2" at max.
-
+            if (logEntry.Length > Width - 2)
+            {
+                logEntry = logEntry.Substring(0, Width - 2);
+            }
             Log.Enqueue(logEntry);
         }
 
         private void DrawLog()
         {
-            //Draws the log in the window.
+            int startY = TopLeftAnchor.Y + 1;
+            int startX = TopLeftAnchor.X + 1;
+            foreach (string logEntry in Log)
+            {
+                System.Console.SetCursorPosition(startX, startY++);
+                System.Console.Write(logEntry);
+            }
         }
-        
+
     }
 }
