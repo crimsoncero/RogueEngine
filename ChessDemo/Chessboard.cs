@@ -5,6 +5,7 @@ namespace ChessDemo
     {
         public Chessboard() : base(8, 8)
         {
+            // THIS IS ONLY TEMPORARY FOR CHECKING THE GAME WINDOW RENDERER. THIS IS NOT RELEVENT
             var BlackTile = new ChessTile(null, Position.ZERO, -1);
             BlackTile.Renderer = new TileConsoleRenderer(' ', ' ', ConsoleColor.White, ConsoleColor.DarkGray);
             var WhiteTile = new ChessTile(null, Position.ZERO, -1);
