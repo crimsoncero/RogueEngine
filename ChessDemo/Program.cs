@@ -2,7 +2,7 @@
 using Path = RogueEngine.Movements.Path;
 
 
-//Game game = Game.CreateConsoleGame(); // Factory method for creating a game with specific settings: Renderer type and so on,
+//Game game = Game<ConsoleRenderer>.CreateGame(); // Factory method for creating a game with specific settings: Renderer type and so on,
 
 //// Create all the tile objects and set up their components.
 //TileObject WhiteRookPrefab = new Rook();
@@ -49,99 +49,16 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Console.OutputEncoding = UTF32Encoding.Unicode;
-        for(int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                ConsoleColor consoleColor;
-                if (i % 2 == 0)
-                    consoleColor = j % 2 == 0 ? ConsoleColor.White : ConsoleColor.DarkGray;
-                else
-                    consoleColor = j % 2 == 0 ? ConsoleColor.DarkGray : ConsoleColor.White;
+        ConsoleRenderer renderer = (ConsoleRenderer)ConsoleRenderer.Create();
+        var window = new EmptyWindow(5,5,new Position(0,0));
+        renderer.AddWindow(window);
+        renderer.Render();
 
-                ConsoleUtil.ChangeColor(ConsoleColor.White, consoleColor);
-                Console.Write(' ');
+        // stage 2
+        //Tilemap tilemap = new Tilemap();
+        //var window = new GameWindow(tilemap) { }
 
-                if(i == 0)
-                {
-                    ConsoleUtil.ChangeColor(ConsoleColor.Red, consoleColor);
-                    switch (j)
-                    {
-                        case 0:
-                            Console.Write('R');
-                            break;
-                        case 1:
-                            Console.Write('N');
-                            break;
-                        case 2:
-                            Console.Write('B');
-                            break;
-                        case 3:
-                            Console.Write('Q');
-                            break;
-                        case 4:
-                            Console.Write('K');
-                            break;
-                        case 5:
-                            Console.Write('B');
-                            break;
-                        case 6:
-                            Console.Write('N');
-                            break;
-                        case 7:
-                            Console.Write('R');
-                            break;
-
-                    }
-                }
-                else if(i == 7)
-                {
-                    ConsoleUtil.ChangeColor(ConsoleColor.Blue, consoleColor);
-                    switch (j)
-                    {
-                        case 0:
-                            Console.Write('R');
-                            break;
-                        case 1:
-                            Console.Write('N');
-                            break;
-                        case 2:
-                            Console.Write('B');
-                            break;
-                        case 3:
-                            Console.Write('K');
-                            break;
-                        case 4:
-                            Console.Write('Q');
-                            break;
-                        case 5:
-                            Console.Write('B');
-                            break;
-                        case 6:
-                            Console.Write('N');
-                            break;
-                        case 7:
-                            Console.Write('R');
-                            break;
-
-                    }
-                }
-                else if(i == 1 || i == 6)
-                {
-                    ConsoleUtil.ChangeColor(i == 1 ? ConsoleColor.Red : ConsoleColor.Blue, consoleColor);
-                    Console.Write('P');
-                }
-                else
-                    Console.Write(' ');
-
-                Console.Write(' ');
-                ConsoleUtil.ResetColor();
-            }
-            Console.WriteLine();
-            
-        }
-        Console.WriteLine();
+       
     }
 
     static void TestPathMakerMethods(int pathLength)

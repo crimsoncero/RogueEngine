@@ -1,9 +1,9 @@
 ﻿namespace RogueEngine
 {
-    public class Game
+    public class Game<T> where T : IRenderer
     {
 
-        public IRenderer Renderer { get; set; }
+        public T Renderer { get; set; }
 
         public static void Foo()
         {

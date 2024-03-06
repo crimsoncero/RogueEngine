@@ -6,23 +6,16 @@ namespace RogueEngine.Renderer.Console
     using System;
     public abstract class Window
     {
-        private const char BORDER_TOP = '▀';
-        private const char BORDER_BOTTOM = '▄';
-        private const char BORDER_LEFT = '▌';
-        private const char BORDER_RIGHT = '▐';
-
-
-
         public int Width { get; set; }
         public int Height { get; set; }
-        public int LayerOrder { get; set; }
         public IPosition TopLeftAnchor { get; set; }
 
-        public Window(int width, int height, int layerOrder, IPosition topLeftAnchor)
+        public ConsoleRenSettings Settings { get; internal set; }
+
+        public Window(int width, int height, IPosition topLeftAnchor)
         {
             Width = width;
             Height = height;
-            LayerOrder = layerOrder;
             TopLeftAnchor = topLeftAnchor;
         }
 
@@ -69,7 +62,15 @@ namespace RogueEngine.Renderer.Console
 
         public override string ToString()
         {
-            return $"Window [width={Width}, height={Height}, layerOrder={LayerOrder}, topLeftAnchor={TopLeftAnchor}]";
+            return $"Window [width={Width}, height={Height}, topLeftAnchor={TopLeftAnchor}]";
+        }
+    }
+
+
+    public class EmptyWindow : Window
+    {
+        public EmptyWindow(int width, int height, IPosition topLeftAnchor) : base(width, height, topLeftAnchor)
+        {
         }
     }
 }

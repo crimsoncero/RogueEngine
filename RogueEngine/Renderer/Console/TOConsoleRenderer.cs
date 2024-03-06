@@ -1,13 +1,14 @@
 ﻿namespace RogueEngine.Renderer.Console
 {
-    public class TileObjectConsoleRenderer : TileObjectRenderer
+    public class TOConsoleRenderer : TileObjectRenderer
     {
 
         public char Symbol { get; private set; }
         public ConsoleColor ForegroundColor { get; private set; }
         public ConsoleColor BackgroundColor { get; private set; }
+        public bool TransparantBackground { get; private set; }
 
-        public TileObjectConsoleRenderer(char symbol, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
+        public TOConsoleRenderer(char symbol, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
         {
             Symbol = symbol;
             ForegroundColor = foregroundColor;
