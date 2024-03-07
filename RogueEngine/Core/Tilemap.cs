@@ -11,7 +11,6 @@ namespace RogueEngine.Core
         public int Width { get; }
         public int Height { get; }
 
-        //Indexer for accessing tiles by coordinates
         public Tile this[int x, int y]
         {
             get { return tiles[x, y]; }
@@ -31,52 +30,19 @@ namespace RogueEngine.Core
             tiles = new Tile[Width, Height];
         }
 
-
-        //implementation of IEnumerable and IEnumerator
-        public IEnumerator<Tile> GetEnumerator()
-        {
-            foreach (Tile tile in tiles)
-            {
-                yield return tile;
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        //method to check if a position is valid
         private bool IsValidPosition(int x, int y)
         {
             return x >= 0 && x < Width && y >= 0 && y < Height;
         }
 
-    }
-
-
-    public class TilemapEnum : IEnumerator<Tile>
-    {
-        private Tile[,] tiles;
-
-        public Tile Current => throw new NotImplementedException();
-
-        object IEnumerator.Current => throw new NotImplementedException();
-
-        public void Dispose()
+        public IEnumerator<Tile> GetEnumerator()
         {
             throw new NotImplementedException();
         }
 
-        public bool MoveNext()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Reset()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }
     }
-
 }
