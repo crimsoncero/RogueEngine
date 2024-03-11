@@ -9,7 +9,7 @@ namespace RogueEngine.Core
         public int OwnedBy { get; set; }
 
 
-        //public Movement Movement { get; set; }
+        public Movement Movement { get; set; }
         public TileObjectRenderer Renderer { get; set; }
 
         public TileObject(int ownedBy)
