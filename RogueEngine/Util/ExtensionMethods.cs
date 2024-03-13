@@ -2,7 +2,7 @@
 
 namespace RogueEngine.Util
 {
-    public static class Extensions
+    public static class ExtensionMethods
     {
         public static bool IsValid(this Array arr)
         {
@@ -35,12 +35,22 @@ namespace RogueEngine.Util
                     output += c;
                 }
             }
-
+            
             return output;
         }
 
+        public static int ToInt(this bool boolean)
+        {
+            return boolean ? 1 : 0;
+        }
 
+        public static int WordCount(this string str)
+        {
+            int count = 0;
+            count = str.Split(new char[] { ' ', ',', '.', '?' }).Length;
 
+            return count;
+        }
 
     }
 }
