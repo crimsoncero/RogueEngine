@@ -28,7 +28,7 @@ namespace RogueEngine.Movements
         private List<Position> _points;
         public IPosition this[int i] { get { return _points[i]; } }
         public int Count { get { return _points.Count; } }
-
+        public IPosition Last { get { return _points.Last(); } }
         private Path(Position vector)
         {
             // Takes an orthagonal (0,y)/(x,0) or diagonal (|x|,|x|) vectors and create a linear path from it.
