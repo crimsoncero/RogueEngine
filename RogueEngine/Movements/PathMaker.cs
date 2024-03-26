@@ -90,6 +90,32 @@ namespace RogueEngine.Movements
             };
             return paths;
         }
+        /// <summary>
+        /// Cuts the given path from the point after the given index.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="index"></param>
+        public static void CutPathAfter(Path path, int index)
+        {
+            for(int i = path.Count - 1; i > index; i--)
+            {
+                path.RemoveLast();
+            }           
+        }
+
+        /// <summary>
+        /// Cuts the given path from the point of the index, included.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="index"></param>
+        public static void CutPathFrom(Path path, int index)
+        {
+            for (int i = path.Count; i > index; i--)
+            {
+                path.RemoveLast();
+            }
+        }
+
 
     }
 }

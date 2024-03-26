@@ -56,14 +56,20 @@ class Program
         //renderer.Render();
 
         // stage 2
-        var chessBoard = new Chessboard();
+        //var chessBoard = new Chessboard();
 
-        char[] colNames = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
-        char[] rowNames = new char[] { '1', '2', '3', '4', '5', '6', '7', '8' };
-        var gameWindow = new GameWindow(chessBoard, new Position(0, 0), rowNames, colNames, false);
+        //char[] colNames = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
+        //char[] rowNames = new char[] { '1', '2', '3', '4', '5', '6', '7', '8' };
+        //var gameWindow = new GameWindow(chessBoard, new Position(0, 0), rowNames, colNames, false);
         //renderer.AddWindow(gameWindow);
 
         //renderer.Render();
+
+        Path path = PathMaker.Linear(PathDirections.Up, 5);
+
+        PathMaker.CutPathAfter(path, 2);
+        Console.WriteLine();
+
 
     }
 

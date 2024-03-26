@@ -86,6 +86,11 @@ namespace RogueEngine.Movements
             }
         }
 
+        internal void RemoveLast()
+        {
+            _points.RemoveAt(_points.Count - 1);
+        }
+
 
         /// <summary>
         /// Create a path in the direction and length specified.

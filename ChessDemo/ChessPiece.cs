@@ -8,6 +8,9 @@ namespace ChessDemo
         {
         }
 
+     
+
+
         public static ChessPiece CreateRook(bool isWhite)
         {
             ChessPiece piece = new ChessPiece(isWhite ? 0 : 1);
