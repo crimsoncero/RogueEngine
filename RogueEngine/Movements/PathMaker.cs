@@ -117,5 +117,63 @@ namespace RogueEngine.Movements
         }
 
 
+        public static ICollection<Path> KnightMoves()
+        {
+            return new List<Path>
+            {
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Up, 2), (PathDirections.Right, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Up, 2), (PathDirections.Left, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Down, 2), (PathDirections.Right, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Down, 2), (PathDirections.Left, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Right, 2), (PathDirections.Up, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Right, 2), (PathDirections.Down, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Left, 2), (PathDirections.Up, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Left, 2), (PathDirections.Down, 1)
+                })
+            };
+        }
+
+        public static Path PawnForward(bool isWhite)
+        {
+            return Linear(isWhite ? PathDirections.Up : PathDirections.Down, 1);
+        }
+
+        public static ICollection<Path> PawnCapture(bool isWhite)
+        {
+            var captureDirections = isWhite
+              ? new List<PathDirections> { PathDirections.UpRight, PathDirections.UpLeft }
+            : new List<PathDirections> { PathDirections.DownRight, PathDirections.DownLeft };
+
+            var paths = new List<Path>();
+            foreach (var direction in captureDirections)
+            {
+                paths.Add(Linear(direction, 1));
+            }
+            return paths;
+        }
+
     }
 }
