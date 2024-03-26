@@ -130,5 +130,24 @@ namespace RogueEngine.Movements
             };
         }
 
+        public static Path PawnForward(bool isWhite)
+        {
+            return Linear(isWhite ? PathDirections.Up : PathDirections.Down, 1);
+        }
+
+        public static ICollection<Path> PawnCapture(bool isWhite)
+        {
+            var captureDirections = isWhite
+              ? new List<PathDirections> { PathDirections.UpRight, PathDirections.UpLeft }
+            : new List<PathDirections> { PathDirections.DownRight, PathDirections.DownLeft };
+
+            var paths = new List<Path>();
+            foreach (var direction in captureDirections)
+            {
+                paths.Add(Linear(direction, 1));
+            }
+            return paths;
+        }
+
     }
 }
