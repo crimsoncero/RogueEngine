@@ -91,5 +91,44 @@ namespace RogueEngine.Movements
             return paths;
         }
 
+        public static ICollection<Path> KnightMoves()
+        {
+            return new List<Path>
+            {
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Up, 2), (PathDirections.Right, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Up, 2), (PathDirections.Left, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Down, 2), (PathDirections.Right, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Down, 2), (PathDirections.Left, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Right, 2), (PathDirections.Up, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Right, 2), (PathDirections.Down, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Left, 2), (PathDirections.Up, 1)
+                }),
+                Complex(new List<(PathDirections, int)>
+                {
+                    (PathDirections.Left, 2), (PathDirections.Down, 1)
+                })
+            };
+        }
+
     }
 }
