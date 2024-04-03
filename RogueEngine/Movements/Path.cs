@@ -20,7 +20,7 @@ namespace RogueEngine.Movements
     /// An immutable collection of all the points in a 2D tilemap path.
     /// </summary>
     /// <typeparam name="T"> A class that implements IPosition</typeparam>
-    public sealed class Path
+    public sealed class Path : ICloneable
     {
         // Make into a tree data structure at some point in the far future... Never gonna happen right?...
 
@@ -29,6 +29,11 @@ namespace RogueEngine.Movements
         public IPosition this[int i] { get { return _points[i]; } }
         public int Count { get { return _points.Count; } }
         public IPosition Last { get { return _points.Last(); } }
+
+        private Path()
+        {
+            _points = new List<Position>();
+        }
         private Path(Position vector)
         {
             // Takes an orthagonal (0,y)/(x,0) or diagonal (|x|,|x|) vectors and create a linear path from it.
@@ -133,5 +138,16 @@ namespace RogueEngine.Movements
             return new Path(vector);
         }
 
+        public object Clone()
+        {
+            Path newPath = new Path();
+
+            foreach(var point in _points)
+            {
+                newPath._points.Add(new Position(point.X, point.Y));
+            }
+
+            return newPath;
+        }
     }
 }

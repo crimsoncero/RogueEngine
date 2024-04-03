@@ -21,17 +21,40 @@ namespace RogueEngine.Movements
         public Movement(ICollection<Path> paths)
         {
             _paths = paths.ToList();
-            DerivedPaths= new List<Path>();
+            DerivedPaths = new List<Path>();
         }
 
-        public List<Path> DerivePaths(IPosition currentPosition, Tilemap tilemap, TileObject thisObject)
+        public List<Path> DerivePaths(Position currentPosition, Tilemap tilemap, TileObject thisObject)
         {
+            DerivedPaths = new List<Path>();
+            
+            foreach (var path in _paths)
+            {
+                DerivedPaths.Add((Path)path.Clone()); 
+            }
+            foreach(var path in DerivedPaths)
+            {
+                DerivePath(currentPosition, tilemap, path);
+            }
 
             return DerivedPaths;
         }
 
         public void DerivePath(Position currentPosition, Tilemap tilemap, Path path)
         {
+            if (EndOnly)
+            {
+                
+                Tile tile = tilemap[currentPosition + (Position)path.Last];
+                foreach (var con in MoveConditions)
+                {
+                    if (con.TryExecute(tile, path, path.Count - 1))
+                        if (!MultipleAlterations)
+                            break;
+                }
+                return;
+            }
+
             for(int i = 0; i < path.Count; i++)
             {
                 Tile tile = tilemap[currentPosition + (Position)path[i]];
