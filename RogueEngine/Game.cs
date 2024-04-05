@@ -18,7 +18,7 @@
         private Game()
         {
             Renderer = new T();
-
+            CommandHandler = new CommandHandler();
         }
 
 
@@ -26,11 +26,11 @@
         {
             // Render
 
-            // Await Command
+            bool hasExecuted = CommandHandler.AwaitCommand();
 
             // Update Game state according to command
 
-            // Check End Condition
+            int endRes = EndCondition.Invoke(_tilemap);
 
             // REPEAT OR EXIT
 
