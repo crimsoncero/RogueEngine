@@ -1,9 +1,9 @@
 ﻿namespace RogueEngine
 {
-    public class Game<T> where T : IRenderer, new()
+    public class Game
     {
 
-        public T Renderer { get; set; }
+        public IRenderer Renderer { get; set; }
         public CommandHandler CommandHandler { get; set; }
 
         /// <summary>
@@ -12,13 +12,12 @@
         public Func<Tilemap, int> EndCondition { get; set; }
         public Func<Tilemap> InitTilemap { get; set; }
         
-        private TileObject _selectedObject = null;
-        private Tilemap _tilemap = null;
+        public TileObject SelectedObject { get; set; } = null;
+        public Tilemap Tilemap { get; set; } = null;
 
         private Game()
         {
-            Renderer = new T();
-            CommandHandler = new CommandHandler();
+            CommandHandler = new CommandHandler(this);
         }
 
 
@@ -30,7 +29,7 @@
 
             // Update Game state according to command
 
-            int endRes = EndCondition.Invoke(_tilemap);
+            int endRes = EndCondition.Invoke(Tilemap);
 
             // REPEAT OR EXIT
 
@@ -39,9 +38,10 @@
 
 
 
-        public static Game<T> Create()
+        public static Game CreateConsoleGame()
         {
-            Game<T> game = new Game<T>();
+            Game game = new Game();
+            game.Renderer = new ConsoleRenderer();
             game.InitTilemap();
 
             return game;

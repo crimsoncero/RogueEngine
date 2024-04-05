@@ -7,12 +7,13 @@ namespace RogueEngine.Commands
         public bool ClearConsoleAfterInput = false;
         public HelpCommand Help { get; private set; }
 
-        
+        private Game _game;
 
-        public CommandHandler()
+        public CommandHandler(Game game)
         {
             Help = new HelpCommand();
-            Commands = new List<Command>() {Help};
+            Commands = new List<Command>() { Help };
+            _game = game;
         }
 
         /// <summary>
@@ -33,7 +34,7 @@ namespace RogueEngine.Commands
         public bool AwaitCommand()
         {
             // await player command input.
-            string[] input = Console.ReadLine().Split(' ', ',', ';', ':', '.', '!', '?');
+            string[] input = Console.ReadLine().Trim().Split(' ', ',', ';', ':', '.', '!', '?');
 
             if (ClearConsoleAfterInput)
             {
@@ -47,14 +48,14 @@ namespace RogueEngine.Commands
             // check if the command is exist and try to execute it.
             if (com != null)
             {
-                if (com.TryExecute(input))
+                if (com.TryExecute(input, _game))
                 {
                     return true;
                 }
             }
             else
             {
-                Help.TryExecute(input);
+                Help.TryExecute(input, _game);
             }
 
             return false;

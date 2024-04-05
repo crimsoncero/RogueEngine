@@ -9,7 +9,7 @@ namespace RogueEngine.Commands
             ComHelp = "";
         }
 
-        public override bool TryExecute(string[] input)
+        public override bool TryExecute(string[] input, Game game)
         {
             throw new NotImplementedException();
         }

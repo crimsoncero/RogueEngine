@@ -13,7 +13,7 @@ namespace RogueEngine.Commands
             ComHelpList = new List<string>() { ComHelp };
         }
 
-        public override bool TryExecute(string[] input)
+        public override bool TryExecute(string[] input, Game game)
         {
             foreach(string s in ComHelpList)
             {

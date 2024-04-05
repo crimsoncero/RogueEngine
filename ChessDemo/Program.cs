@@ -66,9 +66,6 @@ class Program
 
         //renderer.Render();
 
-        CommandHandler handler = new CommandHandler();
-
-        Console.WriteLine( handler.AwaitCommand());
 
 
     }
