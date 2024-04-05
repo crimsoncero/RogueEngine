@@ -24,6 +24,8 @@ namespace RogueEngine.Util
             return true;
         }
 
+       
+
         public static string LowerCaseTrim(this string str)
         {
             string res = str.ToLower();

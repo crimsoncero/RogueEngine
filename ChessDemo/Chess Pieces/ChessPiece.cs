@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Path = RogueEngine.Movements.Path;
 
 namespace ChessDemo
 {

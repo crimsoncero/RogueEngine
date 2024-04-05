@@ -5,8 +5,7 @@
         public string ComSyntext { get; init; }
         public string ComHelp { get; set; }
 
-
-        public abstract bool TryExecute(string input);
+        public abstract bool TryExecute(string[] input);
 
     }
 }

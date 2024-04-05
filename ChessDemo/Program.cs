@@ -1,6 +1,7 @@
 ﻿using ChessDemo;
+using RogueEngine.Commands;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using Path = RogueEngine.Movements.Path;
 
 
 //Game game = Game<ConsoleRenderer>.CreateGame(); // Factory method for creating a game with specific settings: Renderer type and so on,
@@ -65,10 +66,9 @@ class Program
 
         //renderer.Render();
 
-        Path path = PathMaker.Linear(PathDirections.Up, 5);
+        CommandHandler handler = new CommandHandler();
 
-        PathMaker.CutPathAfter(path, 2);
-        Console.WriteLine();
+        Console.WriteLine( handler.AwaitCommand());
 
 
     }
