@@ -3,7 +3,7 @@
 namespace RogueEngine.Core
 {
 
-    public abstract class Tile
+    public  class Tile
     {
         public TileObject TileObject { get; set; }
         public IPosition Position { get; }

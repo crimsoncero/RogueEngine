@@ -37,12 +37,18 @@ namespace RogueEngine.Core
 
         public IEnumerator<Tile> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    yield return tiles[x, y];
+                }
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }

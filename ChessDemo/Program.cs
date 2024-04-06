@@ -1,4 +1,5 @@
 ﻿using ChessDemo;
+using System.Numerics;
 using System.Text;
 using Path = RogueEngine.Movements.Path;
 
@@ -64,7 +65,6 @@ class Program
         //renderer.AddWindow(gameWindow);
 
         //renderer.Render();
-
     }
 
     static void TestPathMakerMethods(int pathLength)
