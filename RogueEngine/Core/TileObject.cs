@@ -2,10 +2,9 @@
 
 namespace RogueEngine.Core
 {
-
     public abstract class TileObject : ICloneable
     {
-        public IPosition Position { get; }
+        public IPosition Position { get; set; }
         public int OwnedBy { get; set; }
 
 
@@ -23,9 +22,15 @@ namespace RogueEngine.Core
         {
         }
 
-        public object Clone()
+        public virtual object Clone()
         {
-            throw new NotImplementedException();
+            TileObject clone = (TileObject)Activator.CreateInstance(this.GetType());
+
+            clone.Position = Position;
+            clone.OwnedBy = OwnedBy;
+            //clone.Renderer = Renderer.Clone();// add in renderer
+
+            return clone;
         }
 
         //moving the tile object to another tile
@@ -34,18 +39,28 @@ namespace RogueEngine.Core
             Console.WriteLine($"Moving tile object from {currentTile.Position} to {targetTile.Position}");
         }
 
-        //interacting with a tile when passing through it
         public virtual void PassTile(Tile tile)
         {
-            // Implement passing logic here
-            Console.WriteLine($"Passing through tile {tile.Position}");
+            if (tile != null && tile.onTilePassed != null)
+            {
+                tile.PassTile(this);
+            }
+            else
+            {
+                Console.WriteLine($"Passing through tile {tile.Position}");
+            }
         }
 
-        //interacting with a tile when landing on it
         public virtual void LandOnTile(Tile tile)
         {
-            // Implement landing logic here
-            Console.WriteLine($"Landing on tile {tile.Position}");
+            if (tile != null && tile.onTileLanded != null) 
+            { 
+                tile.PlaceTileObject(this);
+            }
+            else
+            {
+                Console.WriteLine($"{this} landed on tile {tile.Position}");
+            }
         }
     }
 }
