@@ -4,7 +4,7 @@ namespace RogueEngine.Movements
 {
     public class Movement
     {
-        private List<Path> _paths;
+        public List<Path> Paths { get; set; }
         public List<Path> DerivedPaths { get; private set; }
         public List<MoveCondition> MoveConditions { get; set; }
         
@@ -16,19 +16,26 @@ namespace RogueEngine.Movements
         /// Whether a path can be altered by multiple conditions at the same time.
         /// </summary>
         public bool MultipleAlterations { get; set; } = false;
-        
-        
-        public Movement(ICollection<Path> paths)
+
+        public Movement()
         {
-            _paths = paths.ToList();
+            Paths = new List<Path>();
             DerivedPaths = new List<Path>();
         }
+
+        public Movement(ICollection<Path> paths)
+        {
+            Paths = paths.ToList();
+            DerivedPaths = new List<Path>();
+        }
+
+        
 
         public List<Path> DerivePaths(Position currentPosition, Tilemap tilemap, TileObject thisObject)
         {
             DerivedPaths = new List<Path>();
             
-            foreach (var path in _paths)
+            foreach (var path in Paths)
             {
                 DerivedPaths.Add((Path)path.Clone()); 
             }

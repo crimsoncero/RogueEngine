@@ -18,6 +18,8 @@ namespace RogueEngine.Core
         public TileObject(int ownedBy)
         {
             OwnedBy = ownedBy;
+            Movement = new Movement();
+            SetMovementConditions();
         }
 
         //constructor not owned by any player
@@ -25,6 +27,12 @@ namespace RogueEngine.Core
         : this(-1)
         {
         }
+
+        /// <summary>
+        /// Set the movement Conditions for the tile object.
+        /// </summary>
+        protected abstract void SetMovementConditions();
+
 
         public virtual object Clone()
         {

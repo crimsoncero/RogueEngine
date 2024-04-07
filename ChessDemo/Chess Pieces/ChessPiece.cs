@@ -17,16 +17,24 @@ namespace ChessDemo
         {
         }
 
-        protected virtual void SetMovementCondition()
+        protected override void SetMovementConditions()
         {
-            Movement.MoveConditions.Add(new MoveCondition(CheckEnemy, PathMaker.CutPathAfter));
+            Movement.MoveConditions.Add(new MoveCondition(CheckToCutAfter, PathMaker.CutPathAfter));
+            Movement.MoveConditions.Add(new MoveCondition(CheckToCutFrom, PathMaker.CutPathFrom));
         }
-          
-        public bool CheckEnemy(Tile tile)
+
+
+        public virtual bool CheckToCutAfter(Tile tile)
         {
-            if(tile.IsEmpty()) return false;
+            if(tile.IsEmpty) return false;
             return tile.TileObject.OwnedBy != this.OwnedBy;
-        }      
+        }
+        
+        public virtual bool CheckToCutFrom(Tile tile)
+        {
+            if(tile.IsEmpty) return false;
+            return tile.TileObject.OwnedBy == this.OwnedBy;
+        }
 
        
     }

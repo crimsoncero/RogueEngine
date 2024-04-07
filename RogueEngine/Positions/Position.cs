@@ -14,10 +14,11 @@ namespace RogueEngine.Positions
 
         public Position(int x, int y)
         {
-            
             X = x;
             Y = y;
         }
+
+        public Position(IPosition pos) : this(pos.X, pos.Y) { }
 
         public override string ToString()
         {
@@ -41,6 +42,7 @@ namespace RogueEngine.Positions
         {
             return (X << 16) ^ Y;
         }
+
 
 
         public static bool operator ==(Position a, Position b) => a.Equals(b);

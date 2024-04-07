@@ -12,8 +12,6 @@ namespace RogueEngine.Renderer
         /// </summary>
         /// <returns></returns>
 
-
-
     }
 
     
