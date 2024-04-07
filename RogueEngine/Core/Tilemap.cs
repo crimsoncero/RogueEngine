@@ -32,6 +32,9 @@ namespace RogueEngine.Core
             _map = new Tile[Width, Height];
         }
 
+        public abstract void Init();
+
+
         public bool IsValidPosition(int x, int y)
         {
             return x >= 0 && x < Width && y >= 0 && y < Height;

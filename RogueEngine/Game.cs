@@ -10,7 +10,6 @@
         /// The condition to end the game, return the index of the winner, -1 if the game hasn't ended, or -2 in case of a tie.
         /// </summary>
         public Func<Tilemap, int> EndCondition { get; set; }
-        public Func<Tilemap> InitTilemap { get; set; }
         
        
         public Tilemap Tilemap { get; set; } = null;
@@ -23,12 +22,14 @@
 
         public void Start()
         {
-            // Render
+            if(Tilemap == null)
+            {
+                throw new Exception("You must set the tilemap for the game");
+            }
 
-            bool hasExecuted = CommandHandler.AwaitCommand();
+            Tilemap.Init();
 
-            // Update Game state according to command
-
+            // Call Update 
             int endRes = EndCondition.Invoke(Tilemap);
 
             // REPEAT OR EXIT
@@ -36,15 +37,23 @@
         }
 
 
+        private void Update()
+        {
+            // Render
 
+            bool hasExecuted = CommandHandler.AwaitCommand();
+
+            // Update Game state according to command
+           
+        }
 
         public static Game CreateConsoleGame()
         {
             Game game = new Game();
             game.Renderer = new ConsoleRenderer();
-            game.InitTilemap();
 
             return game;
         }
+
     }
 }
