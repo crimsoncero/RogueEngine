@@ -54,5 +54,23 @@ namespace RogueEngine.Util
             return count;
         }
 
+        public static Path FindPathTo(this List<Path> paths, IPosition position)
+        {
+            foreach(Path path in paths)
+            {
+                for(int i = 0; i < path.Count; i++)
+                {
+                    if (path[i] == position)
+                    {
+                        Path newPath = (Path)path.Clone();
+                        PathMaker.CutPathAfter(newPath, i);
+                        return newPath;
+                    }
+                }
+            }
+
+            return null;
+        }
+
     }
 }
