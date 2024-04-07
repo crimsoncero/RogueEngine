@@ -5,14 +5,14 @@ namespace ChessDemo
     public class Queen : ChessPiece
     {
 
-        public Queen(int ownedBy) : base(ownedBy)
+        public Queen(IPosition position, int ownedBy) : base(position, ownedBy)
         {
 
         }
 
-        public static Queen CreateQueen(bool isWhite)
+        public static Queen CreateQueen(IPosition position, bool isWhite)
         {
-            Queen queen = new Queen(isWhite ? 0 : 1);
+            Queen queen = new Queen(position, isWhite ? 0 : 1);
 
             queen.Renderer = new TOConsoleRenderer('Q', isWhite ? WHITE_FOREGROUND : BLACK_FOREGROUND, isWhite ? WHITE_BACKGROUND : BLACK_BACKGROUND, true);
 

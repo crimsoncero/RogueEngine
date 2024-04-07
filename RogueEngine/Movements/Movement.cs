@@ -21,6 +21,7 @@ namespace RogueEngine.Movements
         {
             Paths = new List<Path>();
             DerivedPaths = new List<Path>();
+            MoveConditions = new List<MoveCondition>();
         }
 
         public Movement(ICollection<Path> paths)

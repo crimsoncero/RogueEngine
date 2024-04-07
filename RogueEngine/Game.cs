@@ -1,22 +1,33 @@
 ﻿namespace RogueEngine
 {
-    public class Game
+    public class Game<T> where T : IRenderer, new()
     {
 
-        public IRenderer Renderer { get; set; }
+        public T Renderer { get; set; }
         public CommandHandler CommandHandler { get; set; }
 
         /// <summary>
         /// The condition to end the game, return the index of the winner, -1 if the game hasn't ended, or -2 in case of a tie.
         /// </summary>
         public Func<Tilemap, int> EndCondition { get; set; }
-        
-       
-        public Tilemap Tilemap { get; set; } = null;
+
+        private Tilemap _tilemap = null;
+        public Tilemap Tilemap
+        {
+            get
+            {
+                return _tilemap;
+            }
+            set
+            {
+                _tilemap = value;
+                CommandHandler.Tilemap = _tilemap;
+            }
+        }
 
         private Game()
         {
-            CommandHandler = new CommandHandler(this);
+            CommandHandler = new CommandHandler(Tilemap);
         }
 
 
@@ -47,10 +58,10 @@
            
         }
 
-        public static Game CreateConsoleGame()
+        public static Game<T> Create()
         {
-            Game game = new Game();
-            game.Renderer = new ConsoleRenderer();
+            var game = new Game<T>();
+            game.Renderer = new T();
 
             return game;
         }

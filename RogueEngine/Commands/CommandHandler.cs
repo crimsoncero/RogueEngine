@@ -7,13 +7,13 @@ namespace RogueEngine.Commands
         public bool ClearConsoleAfterInput = false;
         public HelpCommand Help { get; private set; }
 
-        private Game _game;
+        public Tilemap Tilemap { get; set; }
 
-        public CommandHandler(Game game)
+        public CommandHandler(Tilemap tilemap)
         {
             Help = new HelpCommand();
             Commands = new List<Command>() { Help };
-            _game = game;
+            Tilemap = tilemap;
         }
 
         /// <summary>
@@ -48,14 +48,14 @@ namespace RogueEngine.Commands
             // check if the command is exist and try to execute it.
             if (com != null)
             {
-                if (com.TryExecute(input, _game))
+                if (com.TryExecute(input, Tilemap))
                 {
                     return true;
                 }
             }
             else
             {
-                Help.TryExecute(input, _game);
+                Help.TryExecute(input, Tilemap);
             }
 
             return false;

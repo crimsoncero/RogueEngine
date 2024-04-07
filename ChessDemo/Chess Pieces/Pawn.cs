@@ -3,29 +3,15 @@ namespace ChessDemo
 {
     public class Pawn : ChessPiece
     {
-        public bool HasMoved 
-        {
-            get
-            {
-                int startingRow = 0;
-                if(OwnedBy == 0)
-                    startingRow = 1;
-                if(OwnedBy == 1)
-                    startingRow = 6;
 
-                return Position.Y == startingRow;
-            }
-        }
-
-
-        public Pawn(int ownedBy) : base(ownedBy)
+        public Pawn(IPosition position, int ownedBy) : base(position, ownedBy)
         {
 
         }
 
-        public static Pawn Create(bool isWhite)
+        public static Pawn Create(IPosition position,bool isWhite)
         {
-            Pawn pawn = new Pawn(isWhite ? 0 : 1);
+            Pawn pawn = new Pawn(position, isWhite ? 0 : 1);
 
             pawn.Renderer = new TOConsoleRenderer('P', isWhite ? WHITE_FOREGROUND : BLACK_FOREGROUND, isWhite ? WHITE_BACKGROUND : BLACK_BACKGROUND, true);
 

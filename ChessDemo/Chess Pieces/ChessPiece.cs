@@ -13,7 +13,7 @@ namespace ChessDemo
 
 
 
-        protected ChessPiece(int ownedBy) : base(ownedBy)
+        protected ChessPiece(IPosition position, int ownedBy) : base(position, ownedBy)
         {
         }
 

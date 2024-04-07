@@ -6,14 +6,14 @@ namespace ChessDemo
     public class Knight : ChessPiece
     {
 
-        public Knight(int ownedBy) : base(ownedBy)
+        public Knight(IPosition position, int ownedBy) : base(position, ownedBy)
         {
 
         }
 
-        public static Knight Create(bool isWhite)
+        public static Knight Create(IPosition position, bool isWhite)
         {
-            Knight knight = new Knight(isWhite ? 0 : 1);
+            Knight knight = new Knight(position, isWhite ? 0 : 1);
 
             knight.Renderer = new TOConsoleRenderer('N', isWhite ? WHITE_FOREGROUND : BLACK_FOREGROUND, isWhite ? WHITE_BACKGROUND : BLACK_BACKGROUND, true);
             var paths = KnightPaths();

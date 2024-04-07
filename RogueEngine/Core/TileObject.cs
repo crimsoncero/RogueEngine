@@ -15,16 +15,17 @@ namespace RogueEngine.Core
         public Action<TileObject> onPassed { get; set; }
 
 
-        public TileObject(int ownedBy)
+        public TileObject(IPosition position, int ownedBy)
         {
+            Position = position;
             OwnedBy = ownedBy;
             Movement = new Movement();
             SetMovementConditions();
         }
 
         //constructor not owned by any player
-        public TileObject()
-        : this(-1)
+        public TileObject(IPosition position)
+        : this(position,-1)
         {
         }
 

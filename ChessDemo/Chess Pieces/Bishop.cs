@@ -5,14 +5,14 @@ namespace ChessDemo
     public class Bishop : ChessPiece
     {
 
-        public Bishop(int ownedBy) : base(ownedBy)
+        public Bishop(IPosition position, int ownedBy) : base(position, ownedBy)
         {
 
         }
 
-        public static Bishop Create(bool isWhite)
+        public static Bishop Create(IPosition position, bool isWhite)
         {
-            Bishop bishop = new Bishop(isWhite ? 0 : 1);
+            Bishop bishop = new Bishop(position, isWhite ? 0 : 1);
 
             bishop.Renderer = new TOConsoleRenderer('B', isWhite ? WHITE_FOREGROUND : BLACK_FOREGROUND, isWhite ? WHITE_BACKGROUND : BLACK_BACKGROUND, true);
 

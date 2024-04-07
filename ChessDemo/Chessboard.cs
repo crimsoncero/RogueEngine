@@ -3,10 +3,7 @@ namespace ChessDemo
 {
     public class Chessboard : Tilemap
     {
-        public Chessboard() : base(8, 8)
-        {
-            
-        }
+        public Chessboard() : base(8, 8) { }
 
         public override void Init()
         {
@@ -18,7 +15,6 @@ namespace ChessDemo
                     this[i,j] = new ChessTile(null, new Position(i,j), isWhite);
                     isWhite = !isWhite;
                     this[i,j].TileObject = InitChessPiece(i, j);
-                    this[i,j].TileObject.Position = this[i,j].Position;
                 }
 
                 isWhite = !isWhite;
@@ -32,7 +28,7 @@ namespace ChessDemo
             if(y == 1 || y == 6)
             {
                 int ownedBy = y == 1 ? 0 : 1;
-                return new Pawn(ownedBy);
+                return new Pawn(new Position(x,y), ownedBy);
             }
 
             if(y == 0 || y == 7)
@@ -42,21 +38,21 @@ namespace ChessDemo
                 switch (x)
                 {
                     case 0: 
-                        return new Rook(ownedBy);
+                        return new Rook(new Position(x, y), ownedBy);
                     case 1: 
-                        return new Knight(ownedBy);
+                        return new Knight(new Position(x, y), ownedBy);
                     case 2:
-                        return new Bishop(ownedBy);
+                        return new Bishop(new Position(x, y), ownedBy);
                     case 3:
-                        return new Queen(ownedBy);
+                        return new Queen(new Position(x, y), ownedBy);
                     case 4:
-                        return new King(ownedBy);
+                        return new King(new Position(x, y), ownedBy);
                     case 5:
-                        return new Bishop(ownedBy);
+                        return new Bishop(new Position(x, y), ownedBy);
                     case 6:
-                        return new Knight(ownedBy);
+                        return new Knight(new Position(x, y), ownedBy);
                     case 7:
-                        return new Rook(ownedBy);
+                        return new Rook(new Position(x, y), ownedBy);
                 }
             }
 
