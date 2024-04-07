@@ -138,6 +138,12 @@ namespace RogueEngine.Movements
             return new Path(vector);
         }
 
+        public void Clear()
+        {
+            _points = new List<Position> ();
+        }
+
+
         public object Clone()
         {
             Path newPath = new Path();

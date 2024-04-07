@@ -3,14 +3,16 @@
 namespace RogueEngine.Core
 {
 
-    public  class Tile
+    public abstract class Tile
     {
         public TileObject TileObject { get; set; }
         public IPosition Position { get; }
         public int OwnedBy { get; set; }
         public TileRenderer Renderer { get; set; }
-        public Action<TileObject> onTileLanded { get; set; }
-        public Action<TileObject> onTilePassed { get; set; }
+        public Action<TileObject> onLanded { get; set; }
+        public Action<TileObject> onPassed { get; set; }
+
+        public bool IsEmpty { get { return TileObject == null; } }
 
         //tile with full parameters
         public Tile(TileObject tileObject, IPosition position, int ownedBy)
@@ -32,35 +34,17 @@ namespace RogueEngine.Core
         {
         }
 
-        public bool IsEmpty()
+
+        public virtual void PlaceTileObject(TileObject tileObject)
         {
-            return TileObject == null;
+
+            TileObject?.onLanded?.Invoke(tileObject);
+
+            TileObject = tileObject;
+            tileObject.Position = Position;
+            onLanded?.Invoke(tileObject);
         }
 
-        public void PlaceTileObject(TileObject tileObject)
-        {
-            if (IsEmpty())
-            {
-                TileObject = tileObject;
-                onTileLanded?.Invoke(tileObject);
-            }
-            else
-            {
-                Console.WriteLine("Cannot place a tile object on a non-empty tile.");
-            }
-        }
-
-        public void PassTile(TileObject tileObject)
-        {
-            if (onTilePassed != null)
-            {
-                onTilePassed.Invoke(tileObject);
-            }
-            else
-            {
-                Console.WriteLine($"Tile at position {Position} was passed over.");
-            }
-        }
 
         public void RemoveTileObject()
         {

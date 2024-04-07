@@ -1,5 +1,6 @@
 ﻿//Emily
 
+
 namespace RogueEngine.Core
 {
     public abstract class TileObject : ICloneable
@@ -10,6 +11,9 @@ namespace RogueEngine.Core
 
         public Movement Movement { get; set; }
         public TileObjectRenderer Renderer { get; set; }
+        public Action<TileObject> onLanded { get; set; }
+        public Action<TileObject> onPassed { get; set; }
+
 
         public TileObject(int ownedBy)
         {
@@ -33,34 +37,14 @@ namespace RogueEngine.Core
             return clone;
         }
 
-        //moving the tile object to another tile
-        public virtual void MoveToTile(Tile currentTile, Tile targetTile)
+        public List<Path> DerivePaths(Tilemap tilemap)
         {
-            Console.WriteLine($"Moving tile object from {currentTile.Position} to {targetTile.Position}");
+            return Movement.DerivePaths(new Position(Position.X, Position.Y), tilemap, this);
         }
 
-        public virtual void PassTile(Tile tile)
+        internal void Selected(Tilemap tilemap)
         {
-            if (tile != null && tile.onTilePassed != null)
-            {
-                tile.PassTile(this);
-            }
-            else
-            {
-                Console.WriteLine($"Passing through tile {tile.Position}");
-            }
-        }
-
-        public virtual void LandOnTile(Tile tile)
-        {
-            if (tile != null && tile.onTileLanded != null) 
-            { 
-                tile.PlaceTileObject(this);
-            }
-            else
-            {
-                Console.WriteLine($"{this} landed on tile {tile.Position}");
-            }
+            DerivePaths(tilemap);
         }
     }
 }

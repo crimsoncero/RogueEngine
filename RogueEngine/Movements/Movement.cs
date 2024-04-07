@@ -42,10 +42,18 @@ namespace RogueEngine.Movements
 
         public void DerivePath(Position currentPosition, Tilemap tilemap, Path path)
         {
+
             if (EndOnly)
             {
-                
-                Tile tile = tilemap[currentPosition + (Position)path.Last];
+                // OOB Check
+                var finalPos = currentPosition + (Position)path.Last;
+                if (!tilemap.IsValidPosition(finalPos))
+                {
+                    path.Clear();
+                }
+
+
+                Tile tile = tilemap[finalPos];
                 foreach (var con in MoveConditions)
                 {
                     if (con.TryExecute(tile, path, path.Count - 1))
@@ -57,7 +65,15 @@ namespace RogueEngine.Movements
 
             for(int i = 0; i < path.Count; i++)
             {
-                Tile tile = tilemap[currentPosition + (Position)path[i]];
+                // OOB Check
+                var finalPos = currentPosition + (Position)path[i];
+                if (!tilemap.IsValidPosition(finalPos))
+                {
+                    path.Clear();
+                    break;
+                }
+
+                Tile tile = tilemap[finalPos];
                 foreach(var con in MoveConditions)
                 {
                     if (con.TryExecute(tile, path, i))
@@ -66,6 +82,9 @@ namespace RogueEngine.Movements
                 }
             }
         }
+
+        
+
 
     }
 

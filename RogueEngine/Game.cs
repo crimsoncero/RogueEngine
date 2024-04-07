@@ -12,7 +12,7 @@
         public Func<Tilemap, int> EndCondition { get; set; }
         public Func<Tilemap> InitTilemap { get; set; }
         
-        public TileObject SelectedObject { get; set; } = null;
+       
         public Tilemap Tilemap { get; set; } = null;
 
         private Game()
