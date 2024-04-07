@@ -39,7 +39,7 @@
 
         private void Update()
         {
-            // Render
+            Renderer.Render(Tilemap);
 
             bool hasExecuted = CommandHandler.AwaitCommand();
 

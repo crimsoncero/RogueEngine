@@ -46,7 +46,7 @@ namespace RogueEngine.Renderer.Console
             window.Settings = Settings;
         }
 
-        public void Render()
+        public void Render(Tilemap tilemap)
         {
             foreach(var window in _gameScene)
             {
