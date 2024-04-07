@@ -17,7 +17,7 @@ namespace ChessDemo
             king.Renderer = new TOConsoleRenderer('K', isWhite ? WHITE_FOREGROUND : BLACK_FOREGROUND, isWhite ? WHITE_BACKGROUND : BLACK_BACKGROUND, true);
 
             var paths = PathMaker.EightDirectional(1);
-            king.Movement = new Movement(paths);
+            king.Movement.Paths = paths.ToList();
 
             return king;
         }

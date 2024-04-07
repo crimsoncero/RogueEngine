@@ -18,7 +18,7 @@ namespace ChessDemo
             knight.Renderer = new TOConsoleRenderer('N', isWhite ? WHITE_FOREGROUND : BLACK_FOREGROUND, isWhite ? WHITE_BACKGROUND : BLACK_BACKGROUND, true);
             var paths = KnightPaths();
 
-            knight.Movement = new Movement(paths);
+            knight.Movement.Paths = paths;
             knight.Movement.EndOnly = true;
 
             return knight;

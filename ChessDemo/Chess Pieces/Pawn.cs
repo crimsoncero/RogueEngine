@@ -30,7 +30,7 @@ namespace ChessDemo
             pawn.Renderer = new TOConsoleRenderer('P', isWhite ? WHITE_FOREGROUND : BLACK_FOREGROUND, isWhite ? WHITE_BACKGROUND : BLACK_BACKGROUND, true);
 
             var paths = PawnPaths(isWhite);
-            pawn.Movement = new Movement(paths);
+            pawn.Movement.Paths = paths;
 
             return pawn;
         }
