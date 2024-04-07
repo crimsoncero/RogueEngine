@@ -8,7 +8,7 @@ namespace ChessDemo
 {
     internal class ChessTile : Tile
     {
-        public ChessTile(TileObject tileObject, IPosition position, int ownedBy) : base(tileObject, position, ownedBy)
+        public ChessTile(TileObject tileObject, IPosition position, bool isWhite) : base(tileObject, position, -1)
         {
         }
     }

@@ -3,7 +3,7 @@ namespace RogueEngine.Commands
 {
     public class CommandHandler
     {
-        List<Command> Commands { get; set; }
+        public List<Command> Commands { get; private set; }
         public bool ClearConsoleAfterInput = false;
         public HelpCommand Help { get; private set; }
 
@@ -43,7 +43,7 @@ namespace RogueEngine.Commands
 
 
             // find the command.
-            Command com = Commands.Find((c) => c.ComSyntext == input[0]);
+            Command com = Commands.Find((c) => c.ComSyntext.ToLower() == input[0].ToLower());
             
             // check if the command is exist and try to execute it.
             if (com != null)

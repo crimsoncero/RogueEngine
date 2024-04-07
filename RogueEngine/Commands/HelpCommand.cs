@@ -9,7 +9,7 @@ namespace RogueEngine.Commands
         public HelpCommand()
         {
             ComSyntext = "Help";
-            ComHelp = "Help: List of Commands";
+            ComHelp = "Help: Show all the commands in the game.";
             ComHelpList = new List<string>() { ComHelp };
         }
 

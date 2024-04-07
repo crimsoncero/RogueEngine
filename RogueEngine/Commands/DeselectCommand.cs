@@ -6,7 +6,7 @@ namespace RogueEngine.Commands
         public DeselectCommand()
         {
             ComSyntext = "Deselect";
-            ComHelp = "";
+            ComHelp = "Deselect: Cancels the previous selection.";
         }
 
         public override bool TryExecute(string[] input, Game game)

@@ -7,7 +7,7 @@ namespace RogueEngine.Commands
         public MoveCommand()
         {
             ComSyntext = "Move";
-            ComHelp = "";
+            ComHelp = "Move x,y: Moves to the selected location on the map.";
         }
 
         public override bool TryExecute(string[] input, Game game)

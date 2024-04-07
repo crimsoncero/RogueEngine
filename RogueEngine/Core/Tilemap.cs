@@ -69,6 +69,11 @@ namespace RogueEngine.Core
 
         }
 
+        public void DeselectTileObject()
+        {
+            SelectedTileObject = null;
+        }
+
         public bool MoveTileObject(IPosition tileObjPosition, Path path)
         {
             if (!IsThereTileObject(tileObjPosition)) return false;
@@ -80,7 +85,7 @@ namespace RogueEngine.Core
             {
                 for (int i = 0; i < path.Count - 1; i++)
                 {
-                    Position pos = new Position(tileObjPosition.X, tileObjPosition.Y) + new Position(path.Last.X, path.Last.Y);
+                    Position pos = new Position(tileObjPosition) + new Position(path[i]);
                    
                     if (!IsValidPosition(pos)) continue;
 
@@ -89,7 +94,7 @@ namespace RogueEngine.Core
                 }
             }
             
-            Position finalPos = new Position(tileObjPosition.X, tileObjPosition.Y) + new Position(path.Last.X, path.Last.Y);
+            Position finalPos = new Position(tileObjPosition) + new Position(path.Last);
 
             if (!IsValidPosition(finalPos)) return false;
 

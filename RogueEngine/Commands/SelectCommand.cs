@@ -6,7 +6,7 @@ namespace RogueEngine.Commands
         public SelectCommand()
         {
             ComSyntext = "Select";
-            ComHelp = "";
+            ComHelp = "Select x,y: Select the desired game object.";
         }
 
         public override bool TryExecute(string[] input, Game game)
