@@ -17,6 +17,7 @@ namespace RogueEngine.Commands
         {
             Help = new HelpCommand();
             Commands = new List<Command>() { Help };
+            AddCommand(new ClearCommand());
             Tilemap = tilemap;
             _game = game;
         }
@@ -53,6 +54,12 @@ namespace RogueEngine.Commands
             // check if the command is exist and try to execute it.
             if (com != null)
             {
+                if(com is ClearCommand)
+                {
+                    _game.Renderer.ClearConsole();
+                    return true;
+                }
+
                 if (com.TryExecute(input, Tilemap))
                 {
                     return true;

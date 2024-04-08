@@ -13,7 +13,6 @@ namespace RogueEngine.Renderer.Console
         public GameWindow(Tilemap tilemap, IPosition topLeftAnchor, bool renderGuidelines) : base(0, 0, topLeftAnchor)
         {
             Tilemap = tilemap;
-           
             RenderGuidelines = renderGuidelines;
             CalculateWindowSize();
         }
@@ -30,14 +29,43 @@ namespace RogueEngine.Renderer.Console
         public override void RenderWindow()
         {
             base.RenderWindow();
-
+            DrawGuidelines();
             DrawTilemap();
+        }
+
+        private void DrawGuidelines()
+        {
+            if (RenderGuidelines == false) return;
+
+            if(ColChar != null)
+            {
+                for (int i = 0; i < Tilemap.Height; i++)
+                {
+                    Position pos = new Position(TopLeftAnchor.X + 1, Tilemap.Height - i + TopLeftAnchor.Y + 1);
+                    ConsoleUtil.SetCursor(pos);
+                    ConsoleUtil.ChangeColor(ConsoleColor.White, ConsoleColor.Black);
+                    if (i > ColChar.Length) break;
+                    System.Console.Write(ColChar[i]);
+                }
+            }
+            
+            if(RowChar != null)
+            {
+                for (int i = 0; i < Tilemap.Width; i++)
+                {
+                    Position pos = new Position(TopLeftAnchor.X + 3 + (i * 3), TopLeftAnchor.Y + 1);
+                    ConsoleUtil.SetCursor(pos);
+                    ConsoleUtil.ChangeColor(ConsoleColor.White, ConsoleColor.Black);
+                    if (i > RowChar.Length) break;
+                    System.Console.Write(RowChar[i]);
+                }
+            }
+           
         }
 
 
         private void DrawTilemap()
         {
-
 
             for(int i = 0; i < Tilemap.Height; i++)
             {
