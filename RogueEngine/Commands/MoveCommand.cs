@@ -19,7 +19,7 @@ namespace RogueEngine.Commands
 
             if (int.TryParse(input[1], out x) && int.TryParse(input[2], out y))
             {
-                Position vector = new Position(x - 1, y - 1 ) - new Position(tilemap.SelectedTileObject.Position);
+                Position vector = new Position(x, y ) - new Position(tilemap.SelectedTileObject.Position);
 
                 Path movePath = tilemap.SelectedTileObject.Movement.FindPathTo(vector);
                 
