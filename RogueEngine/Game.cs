@@ -4,7 +4,7 @@
     {
 
         public T Renderer { get; set; }
-        public CommandHandler CommandHandler { get; set; }
+        public CommandHandler<T> CommandHandler { get; set; }
 
         /// <summary>
         /// The condition to end the game, return the index of the winner, -1 if the game hasn't ended, or -2 in case of a tie.
@@ -27,7 +27,7 @@
 
         private Game()
         {
-            CommandHandler = new CommandHandler(Tilemap);
+            CommandHandler = new CommandHandler<T>(Tilemap, this);
         }
 
 
@@ -40,8 +40,11 @@
 
             Tilemap.Init();
 
-            // Call Update 
-            int endRes = EndCondition.Invoke(Tilemap);
+            while (true)
+            {
+                Update();
+            }
+            //int endRes = EndCondition.Invoke(Tilemap);
 
             // REPEAT OR EXIT
 
@@ -50,7 +53,7 @@
 
         private void Update()
         {
-            Renderer.Render(Tilemap);
+            Renderer.Render();
 
             bool hasExecuted = CommandHandler.AwaitCommand();
 

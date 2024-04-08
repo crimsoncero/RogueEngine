@@ -116,7 +116,6 @@ namespace RogueEngine.Movements
             }
         }
                        
-       
 
     }
 }

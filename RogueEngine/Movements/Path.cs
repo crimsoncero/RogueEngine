@@ -20,7 +20,7 @@ namespace RogueEngine.Movements
     /// An immutable collection of all the points in a 2D tilemap path.
     /// </summary>
     /// <typeparam name="T"> A class that implements IPosition</typeparam>
-    public sealed class Path : ICloneable
+    public sealed class Path : ICloneable, IEnumerable<Position>
     {
         // Make into a tree data structure at some point in the far future... Never gonna happen right?...
 
@@ -154,6 +154,33 @@ namespace RogueEngine.Movements
             }
 
             return newPath;
+        }
+
+        public IEnumerator<Position> GetEnumerator()
+        {
+            return _points.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public bool Contains(Position point)
+        {
+            return _points.Contains(point);
+        }
+
+        public int IndexOf(Position point)
+        {
+            return _points.IndexOf(point);
+        }
+        public void KeepOnlyLast()
+        {
+            List<Position> newPoints = new List<Position> ();
+            newPoints.Add(new Position(this.Last));
+
+            _points = newPoints;
         }
     }
 }

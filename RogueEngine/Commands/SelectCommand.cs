@@ -17,7 +17,7 @@ namespace RogueEngine.Commands
 
             if (int.TryParse(input[1],out x) && int.TryParse(input[2], out y))
             {
-                throw new NotImplementedException();
+                tilemap.SelectTileObject(new Position(x, y));
 
                 return true;
             }

@@ -1,7 +1,7 @@
 ﻿
 namespace RogueEngine.Commands
 {
-    public class CommandHandler
+    public class CommandHandler<T> where T : IRenderer, new()
     {
         public List<Command> Commands { get; private set; }
         public bool ClearConsoleAfterInput = false;
@@ -9,11 +9,16 @@ namespace RogueEngine.Commands
 
         public Tilemap Tilemap { get; set; }
 
-        public CommandHandler(Tilemap tilemap)
+
+        private readonly Game<T> _game;
+
+
+        public CommandHandler(Tilemap tilemap, Game<T> game)
         {
             Help = new HelpCommand();
             Commands = new List<Command>() { Help };
             Tilemap = tilemap;
+            _game = game;
         }
 
         /// <summary>
@@ -38,7 +43,7 @@ namespace RogueEngine.Commands
 
             if (ClearConsoleAfterInput)
             {
-               throw new NotImplementedException();
+                _game.Renderer.ClearConsole();
             }
 
 

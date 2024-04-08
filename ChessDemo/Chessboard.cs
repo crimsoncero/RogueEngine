@@ -12,9 +12,9 @@ namespace ChessDemo
             {
                 for(int j = 0; j < 8; j++)
                 {
-                    this[i,j] = new ChessTile(null, new Position(i,j), isWhite);
+                    this[j,i] = new ChessTile(null, new Position(j,i), isWhite);
                     isWhite = !isWhite;
-                    this[i,j].TileObject = InitChessPiece(i, j);
+                    this[j,i].TileObject = InitChessPiece(j, i);
                 }
 
                 isWhite = !isWhite;
@@ -27,32 +27,32 @@ namespace ChessDemo
         {
             if(y == 1 || y == 6)
             {
-                int ownedBy = y == 1 ? 0 : 1;
-                return new Pawn(new Position(x,y), ownedBy);
+                bool isWhite = y == 1 ? true : false;
+                return Pawn.Create(new Position(x, y), isWhite);
             }
 
             if(y == 0 || y == 7)
             {
-                int ownedBy = y == 0 ? 0 : 1;
+                bool isWhite = y == 0 ? true : false;
 
                 switch (x)
                 {
                     case 0: 
-                        return new Rook(new Position(x, y), ownedBy);
+                        return Rook.Create(new Position(x, y), isWhite);
                     case 1: 
-                        return new Knight(new Position(x, y), ownedBy);
+                        return Knight.Create(new Position(x, y), isWhite);
                     case 2:
-                        return new Bishop(new Position(x, y), ownedBy);
+                        return Bishop.Create(new Position(x, y), isWhite);
                     case 3:
-                        return new Queen(new Position(x, y), ownedBy);
+                        return Queen.Create(new Position(x, y), isWhite);
                     case 4:
-                        return new King(new Position(x, y), ownedBy);
+                        return King.Create(new Position(x, y), isWhite);
                     case 5:
-                        return new Bishop(new Position(x, y), ownedBy);
+                        return Bishop.Create(new Position(x, y), isWhite);
                     case 6:
-                        return new Knight(new Position(x, y), ownedBy);
+                        return Knight.Create(new Position(x, y), isWhite);
                     case 7:
-                        return new Rook(new Position(x, y), ownedBy);
+                        return Rook.Create(new Position(x, y), isWhite);
                 }
             }
 

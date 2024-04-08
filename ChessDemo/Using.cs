@@ -5,4 +5,6 @@ global using RogueEngine.Renderer;
 global using RogueEngine.Util;
 global using RogueEngine.Renderer.Console;
 global using Path = RogueEngine.Movements.Path;
-
+global using RogueEngine.Commands;
+global using ChessDemo;
+global using RogueEngine;

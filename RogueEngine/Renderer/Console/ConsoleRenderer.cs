@@ -10,14 +10,23 @@ namespace RogueEngine.Renderer.Console
         public TileConsoleRenderer DefaultTileRenderer { get; set; }
         public TOConsoleRenderer DefaultTORenderer { get; set; }
 
-        // default border characters props
+        public TileConsoleRenderer MoveTileRenderer { get; set; }
 
-
+        public char TopBorder { get; set; }
+        public char LeftBorder { get; set; }
+        public char RightBorder { get; set; }
+        public char BottomBorder { get; set; }
 
         public ConsoleRenSettings()
         {
-            // make default settings for the renderer.
-            throw new NotImplementedException();
+            TopLeftAnchor= new Position(0, 0);
+            DefaultTileRenderer = new TileConsoleRenderer(' ', ' ', ConsoleColor.White, ConsoleColor.Magenta);
+            DefaultTORenderer = new TOConsoleRenderer('¿', ConsoleColor.White, ConsoleColor.Magenta, false);
+            MoveTileRenderer = new TileConsoleRenderer(' ', ' ', ConsoleColor.White, ConsoleColor.Yellow);
+            TopBorder = '▄';
+            LeftBorder = '▐';
+            RightBorder = '▌';
+            BottomBorder = '▀';
         }
     }
 
@@ -25,40 +34,66 @@ namespace RogueEngine.Renderer.Console
 
     public class ConsoleRenderer : IRenderer
     {
-        private List<Window> _gameScene;
+        private Window _gameScene;
 
         public ConsoleRenSettings Settings { get; set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
-        
+
+        private bool _isFirstRender = true;
+
+        private Position _consoleStart { get { return new Position(0, Settings.TopLeftAnchor.Y + Height + 1); } }
 
 
 
         public ConsoleRenderer()
         {
-            _gameScene = new List<Window>();
+            
+            Settings = new ConsoleRenSettings();
         }
 
         public void AddWindow(Window window)
         {
-            // increase height and width according to the window added.
-            _gameScene.Add(window);
+            _gameScene = window;
+            Width = window.Width;
+            Height = window.Height;
             window.Settings = Settings;
         }
 
-        public void Render(Tilemap tilemap)
+        public void Render()
         {
-            foreach(var window in _gameScene)
+            Position consolePos = new Position(System.Console.CursorLeft, System.Console.CursorTop);
+            if (_isFirstRender)
             {
-                window.RenderWindow();
+                consolePos = _consoleStart;
+                _isFirstRender = false;
             }
 
+
+            _gameScene.RenderWindow();
+
+            System.Console.BackgroundColor = ConsoleColor.Black;
+            System.Console.ForegroundColor = ConsoleColor.White;
+            System.Console.CursorLeft = consolePos.X;
+            System.Console.CursorTop = consolePos.Y;
         }
 
-        public static IRenderer Create()
+        public void ClearAll()
         {
-            throw new NotImplementedException();
+            System.Console.Clear();
         }
+
+        public void ClearConsole()
+        {
+            ClearAll();
+            _isFirstRender = true;
+            Render();
+
+
+        }
+
+
+
     }
 }
 

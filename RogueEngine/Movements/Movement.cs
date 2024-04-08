@@ -30,7 +30,17 @@ namespace RogueEngine.Movements
             DerivedPaths = new List<Path>();
         }
 
-        
+        public Path FindPathTo(IPosition pos)
+        {
+
+            Path path = DerivedPaths.Find((p) => p.Contains(new Position(pos)));
+            if (path == null) return null;
+            path = (Path)path.Clone();
+            int index = path.IndexOf(new Position(pos));
+
+            PathMaker.CutPathAfter(path, index);
+            return path;
+        }
 
         public List<Path> DerivePaths(Position currentPosition, Tilemap tilemap, TileObject thisObject)
         {
@@ -48,7 +58,7 @@ namespace RogueEngine.Movements
             return DerivedPaths;
         }
 
-        public void DerivePath(Position currentPosition, Tilemap tilemap, Path path)
+        private void DerivePath(Position currentPosition, Tilemap tilemap, Path path)
         {
 
             if (EndOnly)
@@ -58,9 +68,10 @@ namespace RogueEngine.Movements
                 if (!tilemap.IsValidPosition(finalPos))
                 {
                     path.Clear();
+                    return;
                 }
 
-
+                path.KeepOnlyLast();
                 Tile tile = tilemap[finalPos];
                 foreach (var con in MoveConditions)
                 {

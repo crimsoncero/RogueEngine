@@ -10,12 +10,10 @@ namespace RogueEngine.Renderer.Console
         public char[] ColChar { get; set; }
         public bool RenderGuidelines { get; set; }
 
-        public GameWindow(Tilemap tilemap, IPosition topLeftAnchor,
-            char[] rowChar, char[] colChar, bool renderGuidelines) : base(0, 0, topLeftAnchor)
+        public GameWindow(Tilemap tilemap, IPosition topLeftAnchor, bool renderGuidelines) : base(0, 0, topLeftAnchor)
         {
             Tilemap = tilemap;
-            RowChar = rowChar;
-            ColChar = colChar;
+           
             RenderGuidelines = renderGuidelines;
             CalculateWindowSize();
         }
@@ -23,8 +21,8 @@ namespace RogueEngine.Renderer.Console
 
         private void CalculateWindowSize()
         {
-            Width = Tilemap.Width * (RowChar.Length + (RenderGuidelines ? 2 : 0));
-            Height = Tilemap.Height * (ColChar.Length + (RenderGuidelines ? 1 : 0));
+            Width = (Tilemap.Width * 3) + 2 + (RenderGuidelines ? 1 : 0);
+            Height = Tilemap.Height + 2 + (RenderGuidelines ? 1 : 0);
         }
 
 
@@ -32,7 +30,6 @@ namespace RogueEngine.Renderer.Console
         public override void RenderWindow()
         {
             base.RenderWindow();
-            //Draw2DArray(TileMapIndex);
 
             DrawTilemap();
         }
@@ -40,31 +37,72 @@ namespace RogueEngine.Renderer.Console
 
         private void DrawTilemap()
         {
-            // This will be the complicated array;
 
-            for(int i = Tilemap.Height - 1; i >= 0; i--)
+
+            for(int i = 0; i < Tilemap.Height; i++)
             {
-
-                // Set cursor position 
                 for(int j = 0; j < Tilemap.Width; j++)
                 {
-                    Tile tile = Tilemap[i, j];
+                    int renX = (j * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines? 1 : 0);
+                    int renY = (Tilemap.Height - i) + TopLeftAnchor.Y + (RenderGuidelines ? 1 : 0);
 
-                    var tileRen = (TileConsoleRenderer)tile.Renderer;
-                    if (tileRen != null)
-                        tileRen = Settings.DefaultTileRenderer;
+                    DrawTile(Tilemap[j,i], new Position(renX, renY), false);
 
-                    tileRen.DrawTileLeft();
-                    
-                    if(tile.TileObject != null)
-                    {
-                        TOConsoleRenderer tORen;
-                        tORen = (TOConsoleRenderer)tile.TileObject.Renderer;
-                        if(tORen != null)
-                            tORen = Settings.DefaultTORenderer;
-                    }
                 }
             }
+
+            if(Tilemap.SelectedTileObject != null)
+            {
+                TileObject tileObj = Tilemap.SelectedTileObject;
+                List<Position> positions = new List<Position>();
+
+                foreach(var path in tileObj.Movement.DerivedPaths)
+                {
+                    foreach(var pos in path)
+                    {
+                        positions.Add(pos);
+                    }
+                }
+
+                foreach(var point in positions.Distinct())
+                {
+                    Position tilePos = point + new Position(tileObj.Position);
+                    int renX = (tilePos.X * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines ? 1 : 0);
+                    int renY = (Tilemap.Height - tilePos.Y) + TopLeftAnchor.Y + (RenderGuidelines ? 1 : 0);
+                    DrawTile(Tilemap[tilePos], new Position(renX, renY), true);
+                }
+            }
+        }
+
+
+        private void DrawTile(Tile tile, Position renderPos, bool isMove)
+        {
+            System.Console.CursorLeft = renderPos.X;
+            System.Console.CursorTop = renderPos.Y;
+
+
+
+            TileConsoleRenderer tileRenderer = Settings.DefaultTileRenderer;
+            if (isMove)
+                tileRenderer = Settings.MoveTileRenderer;
+            else if(tile.Renderer != null)
+                tileRenderer = (TileConsoleRenderer)tile.Renderer;
+
+            TOConsoleRenderer tOConsoleRenderer = null;
+            tileRenderer.DrawTileLeft();
+
+            if(tile.IsEmpty == false )
+            {
+                if (tile.TileObject.Renderer != null)
+                    tOConsoleRenderer = (TOConsoleRenderer)tile.TileObject.Renderer;
+                else
+                    tOConsoleRenderer = Settings.DefaultTORenderer;
+            }
+            tileRenderer.DrawTileMiddle(tOConsoleRenderer);
+
+            tileRenderer.DrawTileRight();
+            
+
         }
 
         

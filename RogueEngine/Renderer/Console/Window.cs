@@ -27,16 +27,18 @@ namespace RogueEngine.Renderer.Console
 
         protected virtual void DrawBorder()
         {
-            char topBorder = '▀', bottomBorder = '▄', leftBorder = '▐', rightBorder = '▌';
-            string topBottomRow = topBorder.ToString().PadRight(Width - 1, topBorder) + topBorder;
-            string middleRow = leftBorder + new string(' ', Width - 2) + rightBorder;
 
-            Console.WriteLine(topBottomRow); // Top border
+            ConsoleUtil.SetCursor(TopLeftAnchor);
+
+            string topRow = Settings.TopBorder.ToString().PadRight(Width, Settings.TopBorder);
+            string middleRow = Settings.LeftBorder + new string(' ', Width - 2) + Settings.RightBorder;
+            string bottomRow = Settings.BottomBorder.ToString().PadRight(Width, Settings.BottomBorder);
+            Console.WriteLine(topRow); // Top border
             for (int i = 1; i < Height - 1; i++)
             {
                 Console.WriteLine(middleRow); // Middle rows
             }
-            Console.WriteLine(bottomBorder); // Bottom border
+            Console.WriteLine(bottomRow); // Bottom border
         }
 
         public void ClearWindow(bool clearFrame = false)

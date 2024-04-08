@@ -10,7 +10,7 @@ namespace ChessDemo
 
         }
 
-        public static Queen CreateQueen(IPosition position, bool isWhite)
+        public static Queen Create(IPosition position, bool isWhite)
         {
             Queen queen = new Queen(position, isWhite ? 0 : 1);
 

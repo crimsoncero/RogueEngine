@@ -79,7 +79,8 @@ namespace RogueEngine.Core
             if (!IsThereTileObject(tileObjPosition)) return false;
 
             TileObject tileObject = this[tileObjPosition].TileObject;
-            
+            this[tileObject.Position].TileObject = null;
+
             // On pass invokes
             if (!tileObject.Movement.EndOnly)
             {
@@ -96,9 +97,8 @@ namespace RogueEngine.Core
             
             Position finalPos = new Position(tileObjPosition) + new Position(path.Last);
 
-            if (!IsValidPosition(finalPos)) return false;
-
             this[finalPos].PlaceTileObject(tileObject);
+            SelectedTileObject = null;
             return true;
         }
 

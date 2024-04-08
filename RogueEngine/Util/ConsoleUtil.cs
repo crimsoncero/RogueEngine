@@ -17,6 +17,13 @@ namespace RogueEngine.Util
             Console.BackgroundColor = ConsoleColor.Black;
         }
 
+        public static void SetCursor(IPosition pos)
+        {
+            Console.CursorLeft = pos.X;
+            Console.CursorTop = pos.Y;
+        }
+
+  
 
     }
 }

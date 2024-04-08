@@ -16,10 +16,5 @@
             TransparentBackground = transparentBackground;
         }
 
-        public void DrawTileObject()
-        {
-            ConsoleUtil.ChangeColor(ForegroundColor, BackgroundColor);
-            System.Console.Write(Symbol);
-        }
     }
 }

@@ -16,17 +16,31 @@ namespace RogueEngine.Renderer.Console
             BackgroundColor = backgroundColor;
         }
 
-        public void DrawTile()
-        {
-            DrawTileLeft();
 
-            DrawTileRight();
-        }
 
         public void DrawTileLeft()
         {
             ConsoleUtil.ChangeColor(ForegroundColor, BackgroundColor);
             System.Console.Write(LeftSymbol);
+        }
+
+        public void DrawTileMiddle(TOConsoleRenderer toRenderer)
+        {
+            if(toRenderer == null)
+            {
+                ConsoleUtil.ChangeColor(ForegroundColor, BackgroundColor);
+                System.Console.Write(" ");
+                return;
+            }
+
+            ConsoleColor backgroundColor;
+            if (toRenderer.TransparentBackground)
+                backgroundColor = this.BackgroundColor;
+            else
+                backgroundColor = toRenderer.BackgroundColor;
+
+            ConsoleUtil.ChangeColor(toRenderer.ForegroundColor, backgroundColor);
+            System.Console.Write(toRenderer.Symbol);
         }
 
         public void DrawTileRight()
