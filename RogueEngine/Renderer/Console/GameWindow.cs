@@ -20,8 +20,8 @@ namespace RogueEngine.Renderer.Console
 
         private void CalculateWindowSize()
         {
-            Width = (Tilemap.Width * 3) + 2 + (RenderGuidelines ? 1 : 0);
-            Height = Tilemap.Height + 2 + (RenderGuidelines ? 1 : 0);
+            Width = (Tilemap.Width * 3) + 2 + (RenderGuidelines ? 6 : 0);
+            Height = Tilemap.Height + 2 + (RenderGuidelines ? 2 : 0);
         }
 
 
@@ -39,12 +39,17 @@ namespace RogueEngine.Renderer.Console
 
             if(RowChar != null)
             {
+
                 for (int i = 0; i < Tilemap.Height; i++)
                 {
-                    Position pos = new Position(TopLeftAnchor.X + 1, Tilemap.Height - i + TopLeftAnchor.Y + 1);
-                    ConsoleUtil.SetCursor(pos);
-                    ConsoleUtil.ChangeColor(ConsoleColor.White, ConsoleColor.Black);
                     if (i > RowChar.Length) break;
+                    ConsoleUtil.ChangeColor(ConsoleColor.White, ConsoleColor.Black);
+                    Position pos = new Position(TopLeftAnchor.X + 2, Tilemap.Height - i + TopLeftAnchor.Y + 1);
+                    ConsoleUtil.SetCursor(pos);
+                    System.Console.Write(RowChar[i]);
+
+                    pos = new Position(TopLeftAnchor.X + 5 + Tilemap.Width*3, Tilemap.Height - i + TopLeftAnchor.Y + 1);
+                    ConsoleUtil.SetCursor(pos);
                     System.Console.Write(RowChar[i]);
                 }
             }
@@ -53,10 +58,14 @@ namespace RogueEngine.Renderer.Console
             {
                 for (int i = 0; i < Tilemap.Width; i++)
                 {
-                    Position pos = new Position(TopLeftAnchor.X + 3 + (i * 3), TopLeftAnchor.Y + 1);
-                    ConsoleUtil.SetCursor(pos);
-                    ConsoleUtil.ChangeColor(ConsoleColor.White, ConsoleColor.Black);
                     if (i > ColChar.Length) break;
+                    ConsoleUtil.ChangeColor(ConsoleColor.White, ConsoleColor.Black);
+                    Position pos = new Position(TopLeftAnchor.X + 5 + (i * 3), TopLeftAnchor.Y + 1);
+                    ConsoleUtil.SetCursor(pos);
+                    System.Console.Write(ColChar[i]);
+
+                    pos = new Position(TopLeftAnchor.X + 5 + (i * 3), TopLeftAnchor.Y + 2 + Tilemap.Height);
+                    ConsoleUtil.SetCursor(pos);
                     System.Console.Write(ColChar[i]);
                 }
             }
@@ -71,7 +80,7 @@ namespace RogueEngine.Renderer.Console
             {
                 for(int j = 0; j < Tilemap.Width; j++)
                 {
-                    int renX = (j * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines? 1 : 0);
+                    int renX = (j * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines? 3 : 0);
                     int renY = (Tilemap.Height - i) + TopLeftAnchor.Y + (RenderGuidelines ? 1 : 0);
 
                     DrawTile(Tilemap[j,i], new Position(renX, renY), false);
