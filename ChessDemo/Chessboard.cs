@@ -22,7 +22,6 @@ namespace ChessDemo
             
         }
 
-
         private ChessPiece InitChessPiece(int x, int y)
         {
             if(y == 1 || y == 6)
