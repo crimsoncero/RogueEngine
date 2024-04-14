@@ -11,6 +11,7 @@ class Program
         chessWindow.RowChar = new char[] { '1', '2', '3', '4', '5', '6', '7', '8' };
         chessWindow.ColChar = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
         game.Renderer.AddWindow(chessWindow);
+        game.Renderer.Settings.GameTitle = "Chess - Rogue Engine Demo";
         game.CommandHandler.AddCommand(new ChessMoveCom());
         game.CommandHandler.AddCommand(new ChessSelectCom());
         game.CommandHandler.AddCommand(new DeselectCommand());

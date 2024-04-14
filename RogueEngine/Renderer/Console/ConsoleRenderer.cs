@@ -6,6 +6,7 @@ namespace RogueEngine.Renderer.Console
 
     public class ConsoleRenSettings
     {
+        public string GameTitle { get; set; }
         public Position TopLeftAnchor { get; set; }
         public TileConsoleRenderer DefaultTileRenderer { get; set; }
         public TOConsoleRenderer DefaultTORenderer { get; set; }
@@ -19,6 +20,7 @@ namespace RogueEngine.Renderer.Console
 
         public ConsoleRenSettings()
         {
+            GameTitle = "A Rogue Engine Game";
             TopLeftAnchor= new Position(0, 0);
             DefaultTileRenderer = new TileConsoleRenderer(' ', ' ', ConsoleColor.White, ConsoleColor.Magenta);
             DefaultTORenderer = new TOConsoleRenderer('¿', ConsoleColor.White, ConsoleColor.Magenta, false);
@@ -48,7 +50,6 @@ namespace RogueEngine.Renderer.Console
 
         public ConsoleRenderer()
         {
-            
             Settings = new ConsoleRenSettings();
         }
 
@@ -62,6 +63,9 @@ namespace RogueEngine.Renderer.Console
 
         public void Render()
         {
+            System.Console.Title = Settings.GameTitle;
+
+
             Position consolePos = new Position(System.Console.CursorLeft, System.Console.CursorTop);
             if (_isFirstRender)
             {
