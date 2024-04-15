@@ -104,7 +104,7 @@ namespace RogueEngine.Renderer.Console
                 foreach(var point in positions.Distinct())
                 {
                     Position tilePos = point + new Position(tileObj.Position);
-                    int renX = (tilePos.X * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines ? 1 : 0);
+                    int renX = (tilePos.X * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines ? 3 : 0);
                     int renY = (Tilemap.Height - tilePos.Y) + TopLeftAnchor.Y + (RenderGuidelines ? 1 : 0);
                     DrawTile(Tilemap[tilePos], new Position(renX, renY), true);
                 }
