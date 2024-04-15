@@ -3,6 +3,14 @@
 
 namespace RogueEngine.Renderer.Console
 {
+    internal enum TileType
+    {
+        Normal,
+        Move,
+        Selected
+    }
+
+
     public class GameWindow : Window
     {
         public Tilemap Tilemap { get; set; }
@@ -83,7 +91,7 @@ namespace RogueEngine.Renderer.Console
                     int renX = (j * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines? 3 : 0);
                     int renY = (Tilemap.Height - i) + TopLeftAnchor.Y + (RenderGuidelines ? 1 : 0);
 
-                    DrawTile(Tilemap[j,i], new Position(renX, renY), false);
+                    DrawTile(Tilemap[j,i], new Position(renX, renY), TileType.Normal);
 
                 }
             }
@@ -92,6 +100,12 @@ namespace RogueEngine.Renderer.Console
             {
                 TileObject tileObj = Tilemap.SelectedTileObject;
                 List<Position> positions = new List<Position>();
+
+                IPosition toPos = tileObj.Position;
+                int renX = (toPos.X * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines ? 3 : 0);
+                int renY = (Tilemap.Height - toPos.Y) + TopLeftAnchor.Y + (RenderGuidelines ? 1 : 0);
+                DrawTile(Tilemap[toPos], new Position(renX, renY), TileType.Selected);
+                
 
                 foreach(var path in tileObj.Movement.DerivedPaths)
                 {
@@ -104,15 +118,15 @@ namespace RogueEngine.Renderer.Console
                 foreach(var point in positions.Distinct())
                 {
                     Position tilePos = point + new Position(tileObj.Position);
-                    int renX = (tilePos.X * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines ? 3 : 0);
-                    int renY = (Tilemap.Height - tilePos.Y) + TopLeftAnchor.Y + (RenderGuidelines ? 1 : 0);
-                    DrawTile(Tilemap[tilePos], new Position(renX, renY), true);
+                    renX = (tilePos.X * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines ? 3 : 0);
+                    renY = (Tilemap.Height - tilePos.Y) + TopLeftAnchor.Y + (RenderGuidelines ? 1 : 0);
+                    DrawTile(Tilemap[tilePos], new Position(renX, renY), TileType.Move);
                 }
             }
         }
 
 
-        private void DrawTile(Tile tile, Position renderPos, bool isMove)
+        private void DrawTile(Tile tile, Position renderPos, TileType tileType)
         {
             System.Console.CursorLeft = renderPos.X;
             System.Console.CursorTop = renderPos.Y;
@@ -120,8 +134,10 @@ namespace RogueEngine.Renderer.Console
 
 
             TileConsoleRenderer tileRenderer = Settings.DefaultTileRenderer;
-            if (isMove)
+            if (tileType == TileType.Move)
                 tileRenderer = Settings.MoveTileRenderer;
+            else if(tileType == TileType.Selected)
+                tileRenderer = Settings.SelectedTileRenderer;
             else if(tile.Renderer != null)
                 tileRenderer = (TileConsoleRenderer)tile.Renderer;
 

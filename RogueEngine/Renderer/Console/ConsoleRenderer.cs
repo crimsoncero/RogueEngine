@@ -12,6 +12,7 @@ namespace RogueEngine.Renderer.Console
         public TOConsoleRenderer DefaultTORenderer { get; set; }
 
         public TileConsoleRenderer MoveTileRenderer { get; set; }
+        public TileConsoleRenderer SelectedTileRenderer { get; set; }
 
         public char TopBorder { get; set; }
         public char LeftBorder { get; set; }
@@ -25,6 +26,7 @@ namespace RogueEngine.Renderer.Console
             DefaultTileRenderer = new TileConsoleRenderer(' ', ' ', ConsoleColor.White, ConsoleColor.Magenta);
             DefaultTORenderer = new TOConsoleRenderer('¿', ConsoleColor.White, ConsoleColor.Magenta, false);
             MoveTileRenderer = new TileConsoleRenderer(' ', ' ', ConsoleColor.White, ConsoleColor.Yellow);
+            SelectedTileRenderer = new TileConsoleRenderer('<', '>', ConsoleColor.White, ConsoleColor.DarkYellow);
             TopBorder = '▄';
             LeftBorder = '▐';
             RightBorder = '▌';

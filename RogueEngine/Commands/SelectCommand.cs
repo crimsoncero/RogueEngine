@@ -15,14 +15,20 @@ namespace RogueEngine.Commands
 
             int x, y;
 
-            if (int.TryParse(input[1],out x) && int.TryParse(input[2], out y))
-            {
-                tilemap.SelectTileObject(new Position(x, y ));
+            if (Settings.ColumnParse != null && TryParseColumn(input[1], out int colIndex))
+                x = colIndex;
+            else
+                return false;
 
-                return true;
-            }
 
-            return false;
+            if(Settings.RowParse != null && TryParseRow(input[2], out int rowIndex))
+                y = rowIndex;
+            else
+                return false;
+
+
+            tilemap.SelectTileObject(new Position(x, y ));
+            return true;
 
         }
     }
