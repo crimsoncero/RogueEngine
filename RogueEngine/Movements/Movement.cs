@@ -88,7 +88,7 @@ namespace RogueEngine.Movements
                 var finalPos = currentPosition + (Position)path[i];
                 if (!tilemap.IsValidPosition(finalPos))
                 {
-                    path.Clear();
+                    PathMaker.CutPathFrom(path, i);
                     break;
                 }
 
