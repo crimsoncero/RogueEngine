@@ -96,7 +96,7 @@ namespace RogueEngine.Renderer.Console
                 }
             }
 
-            if(Tilemap.SelectedTileObject != null)
+            if (Tilemap.SelectedTileObject != null)
             {
                 TileObject tileObj = Tilemap.SelectedTileObject;
                 List<Position> positions = new List<Position>();
@@ -105,9 +105,9 @@ namespace RogueEngine.Renderer.Console
                 int renX = (toPos.X * 3) + TopLeftAnchor.X + 1 + (RenderGuidelines ? 3 : 0);
                 int renY = (Tilemap.Height - toPos.Y) + TopLeftAnchor.Y + (RenderGuidelines ? 1 : 0);
                 DrawTile(Tilemap[toPos], new Position(renX, renY), TileType.Selected);
-                
 
-                foreach(var path in tileObj.Movement.DerivedPaths)
+
+                foreach (var path in tileObj.Movement.DerivedPaths)
                 {
                     foreach(var pos in path)
                     {
