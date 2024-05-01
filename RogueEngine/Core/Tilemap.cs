@@ -101,8 +101,24 @@ namespace RogueEngine.Core
             SelectedTileObject = null;
             return true;
         }
+        public bool IsTileOwned(IPosition position, int player)
+        {
+            if (!IsValidPosition(position)) return false;
+            if (this[position].OwnedBy == player)
+                return true;
 
-
+            return false;
+        }
+        public bool IsTileObjectOwned(IPosition position, int player)
+        {
+            if(!IsValidPosition(position)) return false;
+            if (!IsThereTileObject(position)) return false;
+           
+            if (this[position].TileObject.OwnedBy == player) 
+                return true;
+            
+            return false;
+        }
         public IEnumerator<Tile> GetEnumerator()
         {
             for (int y = 0; y < Height; y++)

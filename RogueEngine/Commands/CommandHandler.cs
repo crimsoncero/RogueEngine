@@ -110,14 +110,15 @@ namespace RogueEngine.Commands
                     return true;
                 }
 
-                if (com.TryExecute(input, Tilemap))
+                if (com.TryExecute(input, Tilemap, _game.CurrentPlayer))
                 {
+                    if (com.AdvanceTurn) _game.AdvanceTurn();
                     return true;
                 }
             }
             else
             {
-                Help.TryExecute(input, Tilemap);
+                Help.TryExecute(input, Tilemap, _game.CurrentPlayer);
             }
 
             return false;

@@ -10,7 +10,7 @@ namespace RogueEngine.Commands
             ComHelp = "Clear: Clears the console window.";
         }
 
-        public override bool TryExecute(string[] input, Tilemap tilemap)
+        public override bool TryExecute(string[] input, Tilemap tilemap, int c)
         {
             return true;
         }

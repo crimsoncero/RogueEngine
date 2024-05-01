@@ -8,9 +8,10 @@ namespace RogueEngine.Commands
         {
             ComSyntext = "Move";
             ComHelp = "Move x,y: Moves to the selected location on the map.";
+            AdvanceTurn = true;
         }
 
-        public override bool TryExecute(string[] input, Tilemap tilemap)
+        public override bool TryExecute(string[] input, Tilemap tilemap, int currentPlayer)
         {
 
 
@@ -40,8 +41,10 @@ namespace RogueEngine.Commands
                 else
                     return false;
 
+                Position position = new Position(x, y);
 
-                tilemap.SelectTileObject(new Position(x, y));
+                if (!tilemap.IsTileObjectOwned(position, currentPlayer)) return false;
+                tilemap.SelectTileObject(position);
 
                 moveXArg = 3;
                 moveYArg = 4;

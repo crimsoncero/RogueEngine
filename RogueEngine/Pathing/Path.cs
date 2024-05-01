@@ -1,7 +1,7 @@
 ﻿
 using System.Collections;
 
-namespace RogueEngine.Movements
+namespace RogueEngine.Pathing
 {
     public enum PathDirections
     {

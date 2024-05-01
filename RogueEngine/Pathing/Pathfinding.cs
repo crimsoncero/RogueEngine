@@ -1,8 +1,8 @@
 ﻿
 
-namespace RogueEngine.Movements
+namespace RogueEngine.Pathing
 {
-    public class Movement
+    public class Pathfinding
     {
         public List<Path> Paths { get; set; }
         public List<Path> DerivedPaths { get; private set; }
@@ -17,14 +17,14 @@ namespace RogueEngine.Movements
         /// </summary>
         public bool MultipleAlterations { get; set; } = false;
 
-        public Movement()
+        public Pathfinding()
         {
             Paths = new List<Path>();
             DerivedPaths = new List<Path>();
             MoveConditions = new List<MoveCondition>();
         }
 
-        public Movement(ICollection<Path> paths)
+        public Pathfinding(ICollection<Path> paths)
         {
             Paths = paths.ToList();
             DerivedPaths = new List<Path>();

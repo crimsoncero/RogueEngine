@@ -1,5 +1,5 @@
 ﻿
-namespace RogueEngine.Movements
+namespace RogueEngine.Pathing
 {
     /// <summary>
     /// A Static utility class to create more complicated Path Collections.

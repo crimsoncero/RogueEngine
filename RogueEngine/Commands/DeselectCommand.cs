@@ -9,7 +9,7 @@ namespace RogueEngine.Commands
             ComHelp = "Deselect: Cancels the previous selection.";
         }
 
-        public override bool TryExecute(string[] input, Tilemap tilemap)
+        public override bool TryExecute(string[] input, Tilemap tilemap, int c)
         {
             if (input.Length > 1) return false;
 

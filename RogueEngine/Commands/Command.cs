@@ -6,10 +6,11 @@
         /// The command keyword, not case sensitive, no spaces allowed.
         /// </summary>
         public string ComSyntext { get; init; }
-        public string ComHelp { get; set; }
+        public string ComHelp { get; init; }
+        public bool AdvanceTurn {  get; init; }
         internal CommandSettings Settings { get; set; }
 
-        public abstract bool TryExecute(string[] input, Tilemap tilemap);
+        public abstract bool TryExecute(string[] input, Tilemap tilemap, int currentPlayer);
 
 
         protected bool TryParseRow(string input, out int rowIndex)

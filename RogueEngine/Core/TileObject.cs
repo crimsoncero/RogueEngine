@@ -9,7 +9,7 @@ namespace RogueEngine.Core
         public int OwnedBy { get; set; }
 
 
-        public Movement Movement { get; set; }
+        public Pathfinding Movement { get; set; }
         public TileObjectRenderer Renderer { get; set; }
         public Action<TileObject> onLanded { get; set; }
         public Action<TileObject> onPassed { get; set; }
@@ -19,7 +19,7 @@ namespace RogueEngine.Core
         {
             Position = position;
             OwnedBy = ownedBy;
-            Movement = new Movement();
+            Movement = new Pathfinding();
             SetMovementConditions();
         }
 

@@ -1,8 +1,23 @@
 ﻿namespace RogueEngine
 {
+    public class GameSettings
+    {
+        public string Name {  get; set; }
+        public uint PlayerCount { get; set; }
+
+        public GameSettings()
+        {
+            Name = "A Rogue Engine Game";
+            PlayerCount = 2;
+        }
+
+    }
+
+
     public class Game<T> where T : IRenderer, new()
     {
 
+        public GameSettings Settings { get; set; }
         public T Renderer { get; set; }
         public CommandHandler<T> CommandHandler { get; set; }
 
@@ -25,8 +40,11 @@
             }
         }
 
+        public int CurrentPlayer { get; private set; }
+
         private Game()
         {
+            Settings = new GameSettings();
             CommandHandler = new CommandHandler<T>(Tilemap, this);
         }
 
@@ -50,6 +68,12 @@
 
         }
 
+        public void AdvanceTurn()
+        {
+            CurrentPlayer++;
+            if(CurrentPlayer >= Settings.PlayerCount) CurrentPlayer = 0;
+        }
+
 
         private void Update()
         {
@@ -68,6 +92,7 @@
 
             return game;
         }
+
 
     }
 }

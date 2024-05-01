@@ -1,4 +1,6 @@
 ﻿
+using RogueEngine.Positions;
+
 namespace RogueEngine.Commands
 {
     public class SelectCommand : Command
@@ -9,7 +11,7 @@ namespace RogueEngine.Commands
             ComHelp = "Select x,y: Select the desired game object.";
         }
 
-        public override bool TryExecute(string[] input, Tilemap tilemap)
+        public override bool TryExecute(string[] input, Tilemap tilemap, int currentPlayer)
         {
             if (input.Length != 3) return false;
 
@@ -26,8 +28,10 @@ namespace RogueEngine.Commands
             else
                 return false;
 
+            Position position = new Position(x, y);
 
-            tilemap.SelectTileObject(new Position(x, y ));
+            if (!tilemap.IsTileObjectOwned(position, currentPlayer)) return false;
+            tilemap.SelectTileObject(position);
             return true;
 
         }
