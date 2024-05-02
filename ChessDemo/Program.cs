@@ -18,6 +18,7 @@ class Program
         game.CommandHandler.Settings.ColumnParse = chessWindow.ColChar;
         game.CommandHandler.Settings.RowParse = chessWindow.RowChar;
 
+
         game.EndCondition = (Tilemap t) =>
         {
             // Check if Black wins
