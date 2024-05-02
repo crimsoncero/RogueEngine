@@ -135,6 +135,14 @@ namespace RogueEngine.Core
             return GetEnumerator();
         }
 
-        
+        public IEnumerable<TileObject> GetAllObjects()
+        {
+            return this.Where(tile => !tile.IsEmpty).Select(tile => tile.TileObject);
+        }
+
+        public IEnumerable<TileObject> GetPlayerObjects(int player)
+        {
+            return GetAllObjects().Where(obj => obj.OwnedBy == player);
+        }
     }
 }
