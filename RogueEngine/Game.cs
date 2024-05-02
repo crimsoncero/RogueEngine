@@ -61,7 +61,7 @@
             while (endRes == -1)
             {
                 Update();
-                //endRes = EndCondition.Invoke(Tilemap);
+                endRes = EndCondition.Invoke(Tilemap);
             }
             Renderer.Render();
             Console.WriteLine($"Player {endRes} Won!");

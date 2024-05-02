@@ -13,7 +13,26 @@ namespace ChessDemo
 
         public bool CheckIfCheckmated(Tilemap tilemap)
         {
-            throw new NotImplementedException();
+            // Derive paths and check if there are no possible moves to make with the king.
+            if (DerivePaths(tilemap).Count > 0) return false;
+
+            // Check if the king is surrounded by their own pieces
+
+
+            // Iterate all the positions around the king, and check until a position is empty. If a position is friend, then its protecting, if its enemy then the king can "kill it"
+            foreach(var path in Pathfinding.Paths)
+            {
+                Position pos = new Position(path.Last) + new Position(this.Position);
+                
+                // Check if the position is in bounds.
+                if (!tilemap.IsValidPosition(pos)) 
+                    continue;
+
+                if (!tilemap.IsTileObjectOwned(pos, OwnedBy))
+                    return false;
+            }
+
+            return false;
         }
 
 
