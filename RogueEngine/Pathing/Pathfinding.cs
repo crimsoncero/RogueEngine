@@ -60,7 +60,6 @@ namespace RogueEngine.Pathing
 
         private void DerivePath(Position currentPosition, Tilemap tilemap, Path path)
         {
-
             if (EndOnly)
             {
                 // OOB Check

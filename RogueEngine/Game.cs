@@ -57,14 +57,14 @@
             }
 
             Tilemap.Init();
-
-            while (true)
+            int endRes = -1;
+            while (endRes == -1)
             {
                 Update();
+                //endRes = EndCondition.Invoke(Tilemap);
             }
-            //int endRes = EndCondition.Invoke(Tilemap);
-
-            // REPEAT OR EXIT
+            Renderer.Render();
+            Console.WriteLine($"Player {endRes} Won!");
 
         }
 
@@ -80,8 +80,6 @@
             Renderer.Render();
 
             bool hasExecuted = CommandHandler.AwaitCommand();
-
-            // Update Game state according to command
            
         }
 

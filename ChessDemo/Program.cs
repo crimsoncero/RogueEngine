@@ -17,12 +17,32 @@ class Program
         game.CommandHandler.AddCommand(new DeselectCommand());
         game.CommandHandler.Settings.ColumnParse = chessWindow.ColChar;
         game.CommandHandler.Settings.RowParse = chessWindow.RowChar;
+
+        game.EndCondition = (Tilemap t) =>
+        {
+            // Check if Black wins
+            if ((t as Chessboard).WhiteKing.CheckIfCheckmated(t))
+                return 1;
+
+            // Check if White Wins
+            if ((t as Chessboard).BlackKing.CheckIfCheckmated(t))
+                return 0;
+            // Tie
+            return -1;
+        };
+        
+        
         game.Start();
+
+
+
 
         Console.WriteLine();
 
 
     }
+
+
 
    
 

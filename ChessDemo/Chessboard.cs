@@ -3,8 +3,12 @@ namespace ChessDemo
 {
     public class Chessboard : Tilemap
     {
-        public Chessboard() : base(8, 8) { }
+        public King WhiteKing { get; private set; }
+        public King BlackKing { get; private set; }
 
+
+
+        public Chessboard() : base(8, 8) { }
         public override void Init()
         {
             bool isWhite = true;
@@ -20,6 +24,14 @@ namespace ChessDemo
                 isWhite = !isWhite;
             }
             
+        }
+
+
+        public bool CheckForCheckmate(bool checkWhite)
+        {
+            if (checkWhite)
+                return !WhiteKing.CanMove(this);
+            return !BlackKing.CanMove(this);
         }
 
         private ChessPiece InitChessPiece(int x, int y)
@@ -45,7 +57,11 @@ namespace ChessDemo
                     case 3:
                         return Queen.Create(new Position(x, y), isWhite);
                     case 4:
-                        return King.Create(new Position(x, y), isWhite);
+                        if (isWhite)
+                            WhiteKing = King.Create(new Position(x, y), true);
+                        else
+                            BlackKing = King.Create(new Position(x, y), false);
+                        return isWhite ? WhiteKing : BlackKing;
                     case 5:
                         return Bishop.Create(new Position(x, y), isWhite);
                     case 6:
@@ -54,6 +70,40 @@ namespace ChessDemo
                         return Rook.Create(new Position(x, y), isWhite);
                 }
             }
+
+            return null;
+
+        }
+
+        private ChessPiece KingChecks(int x, int y)
+        {
+            if (x == 4 && y == 5)
+            {
+                BlackKing = King.Create(new Position(x, y), false);
+                return BlackKing;
+            }
+
+            if (x == 1 && y == 4)
+                return Rook.Create(new Position(x, y), false);
+
+            if (x == 2 && y == 6)
+                return Rook.Create(new Position(x, y), true);
+
+            if (x == 3 && y == 2)
+                return Rook.Create(new Position(x, y), true);
+
+            if (x == 5 && y == 2)
+                return Rook.Create(new Position(x, y), true);
+
+            if (x == 6 && y == 1)
+                return Rook.Create(new Position(x, y), true);
+
+            if (x == 0 && y == 0)
+            {
+                WhiteKing = King.Create(new Position(x, y), true);
+                return WhiteKing;
+            }
+                
 
             return null;
 

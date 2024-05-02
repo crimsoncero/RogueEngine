@@ -8,13 +8,12 @@ namespace RogueEngine.Core
         public IPosition Position { get; set; }
         public int OwnedBy { get; set; }
 
-
         public Pathfinding Pathfinding { get; set; }
         public TileObjectRenderer Renderer { get; set; }
         public Action<TileObject> OnLanded { get; set; }
         public Action<TileObject> OnPassed { get; set; }
 
-
+        
         public TileObject(IPosition position, int ownedBy)
         {
             Position = position;
@@ -56,6 +55,23 @@ namespace RogueEngine.Core
         {
             return Pathfinding.DerivePaths(new Position(Position.X, Position.Y), tilemap, this);
         }
+
+        public bool CanMove(Tilemap tilemap)
+        {
+            List<Path> paths = DerivePaths(tilemap);
+            
+            if (paths.Count <= 0) return false;
+
+            bool flag = false;
+            foreach (Path path in paths)
+            {
+                if (path.Count > 0)
+                    flag = true;
+            }
+
+            return flag;
+        }
+
 
         internal void Selected(Tilemap tilemap)
         {
