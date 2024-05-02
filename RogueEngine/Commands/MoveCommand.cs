@@ -70,7 +70,7 @@ namespace RogueEngine.Commands
 
             Position vector = new Position(x, y ) - new Position(tilemap.SelectedTileObject.Position);
 
-            Path movePath = tilemap.SelectedTileObject.Movement.FindPathTo(vector);
+            Path movePath = tilemap.SelectedTileObject.Pathfinding.FindPathTo(vector);
             
             if (movePath == null)
             {

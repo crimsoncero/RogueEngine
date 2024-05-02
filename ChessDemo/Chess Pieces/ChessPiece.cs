@@ -19,8 +19,8 @@ namespace ChessDemo
 
         protected override void SetMovementConditions()
         {
-            Movement.MoveConditions.Add(new MoveCondition(CheckToCutAfter, PathMaker.CutPathAfter));
-            Movement.MoveConditions.Add(new MoveCondition(CheckToCutFrom, PathMaker.CutPathFrom));
+            Pathfinding.MoveConditions.Add(new MoveCondition(CheckToCutAfter, PathMaker.CutPathAfter));
+            Pathfinding.MoveConditions.Add(new MoveCondition(CheckToCutFrom, PathMaker.CutPathFrom));
         }
 
 

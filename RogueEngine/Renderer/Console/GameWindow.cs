@@ -107,7 +107,7 @@ namespace RogueEngine.Renderer.Console
                 DrawTile(Tilemap[toPos], new Position(renX, renY), TileType.Selected);
 
 
-                foreach (var path in tileObj.Movement.DerivedPaths)
+                foreach (var path in tileObj.Pathfinding.DerivedPaths)
                 {
                     foreach(var pos in path)
                     {

@@ -5,7 +5,7 @@ namespace RogueEngine.Pathing
     public class Pathfinding
     {
         public List<Path> Paths { get; set; }
-        public List<Path> DerivedPaths { get; private set; }
+        public List<Path> DerivedPaths { get; set; }
         public List<MoveCondition> MoveConditions { get; set; }
         
         /// <summary>

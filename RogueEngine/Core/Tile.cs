@@ -9,8 +9,8 @@ namespace RogueEngine.Core
         public IPosition Position { get; }
         public int OwnedBy { get; set; }
         public TileRenderer Renderer { get; set; }
-        public Action<TileObject> onLanded { get; set; }
-        public Action<TileObject> onPassed { get; set; }
+        public Action<TileObject> OnLanded { get; set; }
+        public Action<TileObject> OnPassed { get; set; }
 
         public bool IsEmpty { get { return TileObject == null; } }
 
@@ -38,11 +38,11 @@ namespace RogueEngine.Core
         public virtual void PlaceTileObject(TileObject tileObject)
         {
 
-            TileObject?.onLanded?.Invoke(tileObject);
+            TileObject?.OnLanded?.Invoke(tileObject);
 
             TileObject = tileObject;
             tileObject.Position = Position;
-            onLanded?.Invoke(tileObject);
+            OnLanded?.Invoke(tileObject);
         }
 
 

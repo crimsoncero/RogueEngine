@@ -18,8 +18,8 @@ namespace ChessDemo
             knight.Renderer = new TOConsoleRenderer('N', isWhite ? WHITE_FOREGROUND : BLACK_FOREGROUND, isWhite ? WHITE_BACKGROUND : BLACK_BACKGROUND, true);
             var paths = KnightPaths();
 
-            knight.Movement.Paths = paths;
-            knight.Movement.EndOnly = true;
+            knight.Pathfinding.Paths = paths;
+            knight.Pathfinding.EndOnly = true;
 
             return knight;
         }

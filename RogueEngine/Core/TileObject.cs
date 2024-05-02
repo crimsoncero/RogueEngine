@@ -9,17 +9,17 @@ namespace RogueEngine.Core
         public int OwnedBy { get; set; }
 
 
-        public Pathfinding Movement { get; set; }
+        public Pathfinding Pathfinding { get; set; }
         public TileObjectRenderer Renderer { get; set; }
-        public Action<TileObject> onLanded { get; set; }
-        public Action<TileObject> onPassed { get; set; }
+        public Action<TileObject> OnLanded { get; set; }
+        public Action<TileObject> OnPassed { get; set; }
 
 
         public TileObject(IPosition position, int ownedBy)
         {
             Position = position;
             OwnedBy = ownedBy;
-            Movement = new Pathfinding();
+            Pathfinding = new Pathfinding();
             SetMovementConditions();
         }
 
@@ -46,9 +46,15 @@ namespace RogueEngine.Core
             return clone;
         }
 
-        public List<Path> DerivePaths(Tilemap tilemap)
+        /// <summary>
+        /// Derives the possible paths the TileObject can go use.
+        /// Override to create a new pipeline for deriving paths different from the Pathfinding Module Pipeline.
+        /// </summary>
+        /// <param name="tilemap"></param>
+        /// <returns></returns>
+        public virtual List<Path> DerivePaths(Tilemap tilemap)
         {
-            return Movement.DerivePaths(new Position(Position.X, Position.Y), tilemap, this);
+            return Pathfinding.DerivePaths(new Position(Position.X, Position.Y), tilemap, this);
         }
 
         internal void Selected(Tilemap tilemap)

@@ -17,7 +17,7 @@ namespace ChessDemo
             bishop.Renderer = new TOConsoleRenderer('B', isWhite ? WHITE_FOREGROUND : BLACK_FOREGROUND, isWhite ? WHITE_BACKGROUND : BLACK_BACKGROUND, true);
 
             var paths = PathMaker.DiagonalAll(7);
-            bishop.Movement.Paths = paths.ToList();
+            bishop.Pathfinding.Paths = paths.ToList();
 
             return bishop;
         }

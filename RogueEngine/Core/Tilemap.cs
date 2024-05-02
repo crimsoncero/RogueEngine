@@ -82,7 +82,7 @@ namespace RogueEngine.Core
             this[tileObject.Position].TileObject = null;
 
             // On pass invokes
-            if (!tileObject.Movement.EndOnly)
+            if (!tileObject.Pathfinding.EndOnly)
             {
                 for (int i = 0; i < path.Count - 1; i++)
                 {
@@ -90,8 +90,8 @@ namespace RogueEngine.Core
                    
                     if (!IsValidPosition(pos)) continue;
 
-                    this[pos].onPassed?.Invoke(tileObject);
-                    this[pos].TileObject?.onPassed?.Invoke(tileObject);
+                    this[pos].OnPassed?.Invoke(tileObject);
+                    this[pos].TileObject?.OnPassed?.Invoke(tileObject);
                 }
             }
             
