@@ -73,6 +73,7 @@
                 Update();
                 endRes = EndCondition.Invoke(Tilemap);
             }
+            Console.WriteTurn($"Player {endRes + 1} won the game!");
             Renderer.Render();
             
 
