@@ -1,5 +1,4 @@
-﻿
-namespace RogueEngine.Renderer.Console
+﻿namespace RogueConsoleRenderer
 {
     public class TileConsoleRenderer : TileRenderer
     {
@@ -21,32 +20,32 @@ namespace RogueEngine.Renderer.Console
         public void DrawTileLeft()
         {
             ConsoleUtil.ChangeColor(ForegroundColor, BackgroundColor);
-            System.Console.Write(LeftSymbol);
+            Console.Write(LeftSymbol);
         }
 
         public void DrawTileMiddle(TOConsoleRenderer toRenderer)
         {
-            if(toRenderer == null)
+            if (toRenderer == null)
             {
                 ConsoleUtil.ChangeColor(ForegroundColor, BackgroundColor);
-                System.Console.Write(" ");
+                Console.Write(" ");
                 return;
             }
 
             ConsoleColor backgroundColor;
             if (toRenderer.TransparentBackground)
-                backgroundColor = this.BackgroundColor;
+                backgroundColor = BackgroundColor;
             else
                 backgroundColor = toRenderer.BackgroundColor;
 
             ConsoleUtil.ChangeColor(toRenderer.ForegroundColor, backgroundColor);
-            System.Console.Write(toRenderer.Symbol);
+            Console.Write(toRenderer.Symbol);
         }
 
         public void DrawTileRight()
         {
             ConsoleUtil.ChangeColor(ForegroundColor, BackgroundColor);
-            System.Console.Write(RightSymbol);
+            Console.Write(RightSymbol);
         }
     }
 }

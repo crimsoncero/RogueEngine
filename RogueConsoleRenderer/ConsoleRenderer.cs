@@ -1,7 +1,6 @@
 ﻿//Lee
 
-
-namespace RogueEngine.Renderer.Console
+namespace RogueConsoleRenderer
 {
 
     public class ConsoleRenSettings
@@ -22,7 +21,7 @@ namespace RogueEngine.Renderer.Console
         public ConsoleRenSettings()
         {
             GameTitle = "A Rogue Engine Game";
-            TopLeftAnchor= new Position(0, 0);
+            TopLeftAnchor = new Position(0, 0);
             DefaultTileRenderer = new TileConsoleRenderer(' ', ' ', ConsoleColor.White, ConsoleColor.Magenta);
             DefaultTORenderer = new TOConsoleRenderer('¿', ConsoleColor.White, ConsoleColor.Magenta, false);
             MoveTileRenderer = new TileConsoleRenderer(' ', ' ', ConsoleColor.White, ConsoleColor.Yellow);
@@ -65,10 +64,10 @@ namespace RogueEngine.Renderer.Console
 
         public void Render()
         {
-            System.Console.Title = Settings.GameTitle;
+            Console.Title = Settings.GameTitle;
 
 
-            Position consolePos = new Position(System.Console.CursorLeft, System.Console.CursorTop);
+            Position consolePos = new Position(Console.CursorLeft, Console.CursorTop);
             if (_isFirstRender)
             {
                 consolePos = _consoleStart;
@@ -78,15 +77,15 @@ namespace RogueEngine.Renderer.Console
 
             _gameScene.RenderWindow();
 
-            System.Console.BackgroundColor = ConsoleColor.Black;
-            System.Console.ForegroundColor = ConsoleColor.White;
-            System.Console.CursorLeft = consolePos.X;
-            System.Console.CursorTop = consolePos.Y;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.CursorLeft = consolePos.X;
+            Console.CursorTop = consolePos.Y;
         }
 
         public void ClearAll()
         {
-            System.Console.Clear();
+            Console.Clear();
         }
 
         public void ClearConsole()

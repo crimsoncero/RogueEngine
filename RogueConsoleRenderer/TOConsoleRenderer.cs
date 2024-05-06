@@ -1,4 +1,4 @@
-﻿namespace RogueEngine.Renderer.Console
+﻿namespace RogueConsoleRenderer
 {
     public class TOConsoleRenderer : TileObjectRenderer
     {

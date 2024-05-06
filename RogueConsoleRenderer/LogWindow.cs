@@ -1,7 +1,6 @@
 ﻿//Lee
 
-
-namespace RogueEngine.Renderer.Console
+namespace RogueConsoleRenderer
 {
     public class LogWindow : Window
     {
@@ -33,8 +32,8 @@ namespace RogueEngine.Renderer.Console
             int startX = TopLeftAnchor.X + 1;
             foreach (string logEntry in Log)
             {
-                System.Console.SetCursorPosition(startX, startY++);
-                System.Console.Write(logEntry);
+                Console.SetCursorPosition(startX, startY++);
+                Console.Write(logEntry);
             }
         }
 

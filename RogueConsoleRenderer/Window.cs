@@ -1,9 +1,10 @@
 ﻿//Lee
 
 
-namespace RogueEngine.Renderer.Console
+namespace RogueConsoleRenderer
 {
     using System;
+
     public abstract class Window
     {
         public int Width { get; set; }
