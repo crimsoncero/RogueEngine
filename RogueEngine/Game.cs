@@ -19,6 +19,16 @@
 
         public GameSettings Settings { get; set; }
         public T Renderer { get; set; }
+        public IConsole _console;
+        public IConsole Console
+        {
+            get { return _console; }
+            set 
+            {
+                _console = value;
+                CommandHandler.Settings.Console = _console;
+            }
+        }
         public CommandHandler<T> CommandHandler { get; set; }
 
         /// <summary>
@@ -64,7 +74,7 @@
                 endRes = EndCondition.Invoke(Tilemap);
             }
             Renderer.Render();
-            Console.WriteLine($"Player {endRes} Won!");
+            
 
         }
 
@@ -77,6 +87,7 @@
 
         private void Update()
         {
+            Console.WriteTurn($"Player {CurrentPlayer + 1} Turn:");
             Renderer.Render();
 
             bool hasExecuted = CommandHandler.AwaitCommand();
@@ -87,7 +98,6 @@
         {
             var game = new Game<T>();
             game.Renderer = new T();
-
             return game;
         }
 

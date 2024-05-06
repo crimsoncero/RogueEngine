@@ -15,11 +15,13 @@ namespace RogueEngine.Commands
 
         public override bool TryExecute(string[] input, Tilemap tilemap, int c)
         {
+            string str = "";
             foreach(string s in ComHelpList)
             {
-                Console.WriteLine(s);
+                str += s;
+                str += '\n';
             }
-
+            Settings.Console.WriteHelp(str);
             return true;
         }
 

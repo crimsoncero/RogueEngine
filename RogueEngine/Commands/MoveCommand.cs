@@ -16,10 +16,18 @@ namespace RogueEngine.Commands
 
 
             // Move can get either 2 args or 4 args (if select move)
-            if (input.Length != 5 && input.Length != 3) return false;
+            if (input.Length != 5 && input.Length != 3)
+            {
+                Settings.Console.WriteError("Invalid input count");
+                return false;
+            }
 
             // If move alone, then has to have a selected tile object.
-            if (input.Length == 3 && tilemap.SelectedTileObject == null) return false;
+            if (input.Length == 3 && tilemap.SelectedTileObject == null)
+            {
+                Settings.Console.WriteError("No selected game piece");
+                return false;
+            }
 
             int x, y;
 
@@ -33,17 +41,27 @@ namespace RogueEngine.Commands
                 if (Settings.ColumnParse != null && TryParseColumn(input[1], out colIndex))
                     x = colIndex;
                 else
+                {
+                    Settings.Console.WriteError("Invalid X select Coordinate");
                     return false;
+                }
 
 
                 if (Settings.RowParse != null && TryParseRow(input[2], out rowIndex))
                     y = rowIndex;
                 else
+                {
+                    Settings.Console.WriteError("Invalid Y select Coordinate");
                     return false;
+                }
 
                 Position position = new Position(x, y);
 
-                if (!tilemap.IsTileObjectOwned(position, currentPlayer)) return false;
+                if (!tilemap.IsTileObjectOwned(position, currentPlayer))
+                {
+                    Settings.Console.WriteError("Game Piece doesn't belong to player");
+                    return false;
+                }
                 tilemap.SelectTileObject(position);
 
                 moveXArg = 3;
@@ -55,6 +73,7 @@ namespace RogueEngine.Commands
             else
             {
                 tilemap.DeselectTileObject();
+                Settings.Console.WriteError("Invalid X move Coordinate");
                 return false;
             }
 
@@ -64,6 +83,7 @@ namespace RogueEngine.Commands
             else
             {
                 tilemap.DeselectTileObject();
+                Settings.Console.WriteError("Invalid Y move Coordinate");
                 return false;
             }
 
@@ -75,6 +95,7 @@ namespace RogueEngine.Commands
             if (movePath == null)
             {
                 tilemap.DeselectTileObject();
+                Settings.Console.WriteError("Invalid destination");
                 return false;
             }
 

@@ -11,7 +11,7 @@ namespace RogueEngine.Commands
 
         public override bool TryExecute(string[] input, Tilemap tilemap, int c)
         {
-            if (input.Length > 1) return false;
+            
 
             tilemap?.DeselectTileObject();
             return tilemap != null;

@@ -1,5 +1,7 @@
 ﻿//Lee
 
+using RogueEngine;
+
 namespace RogueConsoleRenderer
 {
 
@@ -35,7 +37,7 @@ namespace RogueConsoleRenderer
 
 
 
-    public class ConsoleRenderer : IRenderer
+    public class ConsoleRenderer : IRenderer, IConsole
     {
         private Window _gameScene;
 
@@ -46,8 +48,9 @@ namespace RogueConsoleRenderer
         private bool _isFirstRender = true;
 
         private Position _consoleStart { get { return new Position(0, Settings.TopLeftAnchor.Y + Height + 1); } }
-
-
+        private string _errorText = string.Empty;
+        private string _turnText = string.Empty;
+        private string _helpText = string.Empty;
 
         public ConsoleRenderer()
         {
@@ -81,24 +84,66 @@ namespace RogueConsoleRenderer
             Console.ForegroundColor = ConsoleColor.White;
             Console.CursorLeft = consolePos.X;
             Console.CursorTop = consolePos.Y;
+
+            if(_errorText != string.Empty)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("Error: " + _errorText);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("\n------------------------------------------\n");
+                _errorText= string.Empty;
+            }
+            if(_turnText != string.Empty)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(_turnText);
+                Console.WriteLine("\n------------------------------------------\n");
+                _turnText= string.Empty;
+            }
+            if(_helpText != string.Empty)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(_helpText);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("\n------------------------------------------\n");
+                _helpText = string.Empty;
+                
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+
+
         }
 
-        public void ClearAll()
+        public void Clear()
         {
             Console.Clear();
         }
 
         public void ClearConsole()
         {
-            ClearAll();
+            Clear();
             _isFirstRender = true;
             Render();
 
 
         }
 
+        public void WriteError(string errorText)
+        {
+            _errorText = errorText.Trim();
+        }
 
+        public void WriteTurn(string turnText)
+        {
+            _turnText = turnText.Trim();
+        }
 
+        public void WriteHelp(string helpText)
+        {
+            _helpText = helpText.Trim();
+        }
+
+      
     }
 }
 

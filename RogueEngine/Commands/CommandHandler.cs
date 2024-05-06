@@ -5,6 +5,9 @@ namespace RogueEngine.Commands
 
     public class CommandSettings
     {
+
+        public IConsole Console { get; set; }
+
         /// <summary>
         /// What values the user inputs for Rows.
         /// </summary>
@@ -124,6 +127,7 @@ namespace RogueEngine.Commands
             return false;
 
         }
+
 
     }
 }
