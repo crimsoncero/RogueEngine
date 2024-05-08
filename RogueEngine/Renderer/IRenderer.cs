@@ -1,6 +1,4 @@
-﻿// Lee //
-
-
+﻿
 namespace RogueEngine.Renderer
 {
     public interface IRenderer
